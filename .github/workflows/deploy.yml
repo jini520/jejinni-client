@@ -1,0 +1,75 @@
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches: [main, test]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup pnpm cache
+        uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build application
+        run: pnpm run build
+
+      - name: Deploy to Ubuntu server (test branch)
+        if: github.ref == 'refs/heads/test'
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /home/jinni/test/test-client
+            git pull origin test
+            pnpm install --frozen-lockfile
+            pnpm run build
+
+            # PM2로 무중단 배포
+            pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js 
+
+            # docker build -t my-app-test .
+            # docker stop my-app-test || true
+            # docker rm my-app-test || true
+            # docker run -d --name my-app-test -p 3001:3000 my-app-test
+
+      - name: Deploy to Ubuntu server (main branch)
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /home/jinni/test/test-client
+            git pull origin main
+            pnpm install --frozen-lockfile
+            pnpm run build
+
+            # PM2로 무중단 배포
+            pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
+
+            # docker build -t my-app-prod .
+            # docker stop my-app-prod || true
+            # docker rm my-app-prod || true
+            # docker run -d --name my-app-prod -p 3000:3000 my-app-prod
