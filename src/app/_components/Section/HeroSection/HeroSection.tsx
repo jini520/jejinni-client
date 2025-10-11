@@ -14,14 +14,6 @@ const HeroSection = () => {
         </p>
       </h1>
       <p className="section__description">
-        I'm a frontend developer with a passion for creating beautiful and
-        functional web applications.
-        <br />
-        I'm a frontend developer with a passion for creating beautiful and
-        functional web applications.
-        <br />
-        I'm a frontend developer with a passion for creating beautiful and
-        functional web applications.
         <br />
       </p>
     </Section>

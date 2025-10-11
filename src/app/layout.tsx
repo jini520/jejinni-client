@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import MSWProvider from "./_components/MSWProvider";
+// import MSWProvider from "./_components/MSWProvider";
 import QueryProvider from "./_providers/QueryProvider";
 import "../styles/main.scss";
 import "./layout.scss";
