@@ -1,0 +1,20 @@
+[
+  {
+    "date": "21.07. - 22.06.",
+    "education": "삼성 청년 SW 아카데미",
+    "status": "수료",
+    "description": "웹 개발자 양성 교육"
+  },
+  {
+    "date": "15.03. - 21.08.",
+    "education": "한성대학교",
+    "status": "졸업",
+    "description": "IT융합공학부 사이버보안트랙 전공, 사물인터넷트랙 복수전공"
+  },
+  {
+    "date": "11.03. - 14.02.",
+    "education": "부흥고등학교",
+    "status": "졸업",
+    "description": "이공계열"
+  }
+]

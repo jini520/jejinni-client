@@ -1,0 +1,92 @@
+{
+  "baseurl": "/icons/logos.svg",
+  "catagory": ["language", "frontend", "library", "build", "tools"],
+  "items": {
+    "language": [
+      {
+        "name": "JavaScript",
+        "url": "/icons/logos.svg#js"
+      },
+      {
+        "name": "TypeScript",
+        "url": "/icons/logos.svg#ts"
+      },
+      {
+        "name": "Java",
+        "url": "/icons/logos.svg#java"
+      }
+    ],
+    "frontend": [
+      {
+        "name": "React",
+        "url": "/icons/logos.svg#react"
+      },
+      {
+        "name": "Next.js",
+        "url": "/icons/logos.svg#next"
+      },
+      {
+        "name": "React Native",
+        "url": "/icons/logos.svg#react"
+      }
+    ],
+    "library": [
+      {
+        "name": "Zustand",
+        "url": "/icons/logos.svg#zustand"
+      },
+      {
+        "name": "Recoil",
+        "url": "/icons/logos.svg#recoil"
+      },
+      {
+        "name": "Tailwind",
+        "url": "/icons/logos.svg#tailwind"
+      },
+      {
+        "name": "Jest",
+        "url": "/icons/logos.svg#jest"
+      },
+      {
+        "name": "Redux",
+        "url": "/icons/logos.svg#redux"
+      },
+      {
+        "name": "Storybook",
+        "url": "/icons/logos.svg#storybook"
+      }
+    ],
+    "build": [
+      {
+        "name": "Vite",
+        "url": "/icons/logos.svg#vite"
+      },
+      {
+        "name": "Docker",
+        "url": "/icons/logos.svg#docker"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Figma",
+        "url": "/icons/logos.svg#figma"
+      },
+      {
+        "name": "GitHub",
+        "url": "/icons/logos.svg#github"
+      },
+      {
+        "name": "GitLab",
+        "url": "/icons/logos.svg#gitlab"
+      },
+      {
+        "name": "Jira",
+        "url": "/icons/logos.svg#jira"
+      },
+      {
+        "name": "Notion",
+        "url": "/icons/logos.svg#notion"
+      }
+    ]
+  }
+}

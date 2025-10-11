@@ -1,0 +1,62 @@
+@reference 'tailwindcss';
+
+@layer components {
+  .nav {
+    @apply flex top-0 h-12 rounded-full items-center justify-center px-6 py-2 gap-6 z-9999;
+
+    background: RGB(from var(--color-gray-400) r g b / 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  .logo {
+    @apply grid grid-cols-2 grid-cols-2 justify-center grid-rows-[14px_14px] grid-cols-[14px_14px];
+
+    & > svg {
+      @apply w-4 h-4 stroke-40;
+
+    }
+    &:hover {
+      cursor: pointer;
+      // 각 svg에 순차적으로 통통 튀는 애니메이션(bounce)을 적용합니다.
+      // 접근성과 일관성을 위해 prefers-reduced-motion도 고려합니다.
+      & > svg {
+        animation: none;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        & > svg {
+          animation: logo-bounce 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s 1;
+          animation-play-state: paused;
+        }
+        & > svg:nth-child(1) { animation-delay: 0s; }
+        & > svg:nth-child(2) { animation-delay: 0.08s; }
+        & > svg:nth-child(3) { animation-delay: 0.16s; }
+        & > svg:nth-child(4) { animation-delay: 0.24s; }
+        &:hover > svg {
+          animation-play-state: running;
+        }
+      }
+
+      @keyframes logo-bounce {
+        0%   { transform: translateY(0); }
+        20%  { transform: translateY(-8px); }
+        40%  { transform: translateY(0); }
+        60%  { transform: translateY(-4px); }
+        80%  { transform: translateY(0); }
+        100% { transform: translateY(0); }
+      }
+    }
+  }
+
+  .nav-item {
+    @apply font-medium text-gray-100 cursor-pointer px-3 py-2 rounded-full;
+
+    list-style: none;
+
+    &.active {
+      @apply font-bold;
+
+      color: var(--color-white);
+      background-color: var(--opacity-20);
+    }
+  }
+}

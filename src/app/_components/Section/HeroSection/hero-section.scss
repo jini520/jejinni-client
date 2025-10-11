@@ -1,0 +1,41 @@
+@reference "tailwindcss";
+
+@layer components {
+  .section__hero {
+    .section__title {
+      @apply text-5xl font-bold leading-tight text-center;
+
+      color: var(--color-text-primary);
+    }
+
+    .section__description {
+      @apply text-gray-100 text-lg font-medium leading-tight text-center mt-12;
+    }
+  }
+  .flicker-text {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 5px #f0f,
+      0 0 10px #f0f,
+      0 0 20px #f0f,
+      0 0 40px #f0f;
+    animation: flicker 2.5s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      opacity: 1;
+      text-shadow:
+        0 0 5px #f0f,
+        0 0 10px #f0f,
+        0 0 20px #f0f,
+        0 0 40px #f0f;
+    }
+    20%, 24%, 55% {
+      opacity: 0.4;
+      text-shadow: none;
+    }
+  }
+}
