@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "jinni-client",
+      name: "jejinni-client",
       script: "pnpm",
       args: "start",
       cwd: "/home/jinni/jejinni-client",
