@@ -5,12 +5,14 @@
     "position": "Frontend Engineer",
     "description": "삼성 청년 SW 아카데미",
     "skills": [
-      "React",
-      "Electron",
-      "Next.js",
-      "Typescript",
-      "Recoil",
-      "Styled-components"
+      "javascript",
+      "typescript",
+      "react",
+      "nextjs",
+      "electron",
+      "recoil",
+      "gitlab",
+      "jira"
     ]
   },
   {
@@ -18,13 +20,27 @@
     "title": "DOTORE",
     "position": "블록체인, Frontend Engineer",
     "description": "삼성 청년 SW 아카데미",
-    "skills": []
+    "skills": [
+      "javascript",
+      "typescript",
+      "solidity",
+      "react",
+      "recoil",
+      "gitlab",
+      "jira"
+    ]
   },
   {
     "date": "22.01. - 22.02.",
     "title": "Drawing Dream",
     "position": "Frontend Engineer",
     "description": "삼성 청년 SW 아카데미",
-    "skills": []
+    "skills": [
+      "javascript",
+      "react",
+      "redux",
+      "gitlab",
+      "jira"
+    ]
   }
 ]

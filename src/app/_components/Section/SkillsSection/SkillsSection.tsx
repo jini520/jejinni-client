@@ -4,7 +4,26 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import Section from "../Section";
 import "./skills-section.scss";
-import skills from "@/app/_constants/skills.json";
+import skill from "@/app/_constants/skills.json";
+
+const skills = {
+  catagory: ["language", "frontend", "library", "build", "tools"],
+  items: {
+    language: ["javascript", "typescript", "java"],
+    frontend: ["react", "nextjs", "reactnative"],
+    library: [
+      "zustand",
+      "recoil",
+      "tailwind",
+      "jest",
+      "redux",
+      "storybook",
+      "sass",
+    ],
+    build: ["vite", "docker"],
+    tools: ["figma", "github", "gitlab", "jira", "notion"],
+  },
+};
 
 const SkillsSection = () => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -96,16 +115,16 @@ const SkillsSection = () => {
             <React.Fragment key={catagory}>
               {skills.items[catagory as keyof typeof skills.items].map(
                 (item) => (
-                  <div
-                    key={item.name}
+                  <span
+                    key={skill[item as keyof typeof skill].name}
                     className={classNames("skill__icon", {
                       active: selected === catagory || selected === null,
                     })}
                   >
                     <svg width={48} height={48} className="rounded-sm">
-                      <use href={`${item.url}`} />
+                      <use href={`${skill[item as keyof typeof skill].url}`} />
                     </svg>
-                  </div>
+                  </span>
                 )
               )}
               {catagory === "library" && (

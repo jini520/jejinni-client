@@ -4,19 +4,35 @@
     "company": "Connecting Point",
     "position": "Frontend Engineer",
     "description": "스타트업",
-    "skills": ["React", "React Native", "Typescript", "Redux", "SCSS"]
+    "skills": ["react", "reactnative", "javascript", "typescript", "redux", "sass", "github", "vite"],
+    "details": [ 
+      "React, Typescript 기반 타이어 중개 판매 서비스 개발", 
+      "인증/로그인 기능 구현", 
+      "크로스 플랫폼 기능 확장"
+    ]
   },
   {
     "date": "23.08. - 24.05.",
     "company": "Fasoo",
     "position": "개발 센터, Frontend Engineer",
     "description": "데이터 및 소프트웨어 보안 솔루션",
-    "skills": ["React", "React Native", "Typescript", "Redux", "SCSS"]
+    "skills": ["react", "javascript", "typescript", "redux", "sass", "gitlab"],
+    "details": [
+      "React, Typescript 기반 LLM 제품 신규 개발",
+      "LLM 텍스트 스트리밍 모듈 개발",
+      "채팅 데이터 관리 최적화",
+      "컴포넌트 재사용성 강화"
+    ]
   },
   {
     "date": "22.06. - 22.11.",
     "company": "멀티캠퍼스",
     "position": "SSAFY 개발 운영 그룹, 7기 실습코치",
-    "description": "삼성 청년 SW 아카데미"
+    "description": "삼성 청년 SW 아카데미",
+    "details": [
+      "프로젝트 코칭 및 질의 응답 (32개 팀)",
+      "도메인 별 핵심 기술 발표 진행",
+      "프로젝트 진척도 및 산출물 관리 (gitlab, jira)"
+    ]
   }
 ]

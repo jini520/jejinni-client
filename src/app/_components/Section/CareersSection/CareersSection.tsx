@@ -1,13 +1,16 @@
 import React from "react";
 import Section from "../Section";
 import StarBurst from "public/icons/star-burst.svg";
+import Accordion from "./Accordion/Accordion";
+import classNames from "classnames";
 import careers from "@/app/_constants/careers.json";
 import projects from "@/app/_constants/projects.json";
+import skill from "@/app/_constants/skills.json";
 import "./careers-section.scss";
 
 const CareersSection = () => {
   return (
-    <Section id="career" className="section section__career">
+    <Section id="career" className="section section__careers">
       <h3 className="section__title">경력</h3>
       <p className="section__description">
         다양한 업무 경험과 프로젝트를 통해
@@ -33,7 +36,32 @@ const CareersSection = () => {
                   {career.description}
                 </span>
                 <span className="timeline__description">{career.position}</span>
-                <span className="timeline__button-detail">자세히 보기</span>
+                {career.skills && (
+                  <div className="skill__icons">
+                    {career.skills.map((item) => (
+                      <span className="skill__icon" key={item}>
+                        <svg className="rounded-sm">
+                          <use
+                            href={`${skill[item as keyof typeof skill].url}`}
+                          />
+                        </svg>
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <Accordion
+                  className="timeline__button-detail"
+                  closedTitle="주요 업무 내용 보기"
+                  openedTitle="주요 업무 내용 가리기"
+                >
+                  <ul className="timeline__content-detail">
+                    {career.details?.map((detail, idx) => (
+                      <li key={idx} className="timeline__content-detail-item">
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Accordion>
               </div>
             </li>
           ))}
@@ -60,6 +88,19 @@ const CareersSection = () => {
                 <span className="timeline__description">
                   {project.position}
                 </span>
+                {project.skills && (
+                  <div className="skill__icons">
+                    {project.skills.map((item) => (
+                      <span className="skill__icon" key={item}>
+                        <svg className="rounded-sm">
+                          <use
+                            href={`${skill[item as keyof typeof skill].url}`}
+                          />
+                        </svg>
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </li>
           ))}
