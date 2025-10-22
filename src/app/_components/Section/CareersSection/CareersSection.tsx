@@ -7,6 +7,7 @@ import careers from "@/app/_constants/careers.json";
 import projects from "@/app/_constants/projects.json";
 import skill from "@/app/_constants/skills.json";
 import "./careers-section.scss";
+import SkillIcon, { SkillIconTypes } from "../../SkillIcon/SkillIcon";
 
 const CareersSection = () => {
   return (
@@ -39,13 +40,12 @@ const CareersSection = () => {
                 {career.skills && (
                   <div className="skill__icons">
                     {career.skills.map((item) => (
-                      <span className="skill__icon" key={item}>
-                        <svg className="rounded-sm">
-                          <use
-                            href={`${skill[item as keyof typeof skill].url}`}
-                          />
-                        </svg>
-                      </span>
+                      <SkillIcon
+                        key={item}
+                        className="skill__icon"
+                        skill={item as SkillIconTypes}
+                        selected={true}
+                      />
                     ))}
                   </div>
                 )}
@@ -91,13 +91,12 @@ const CareersSection = () => {
                 {project.skills && (
                   <div className="skill__icons">
                     {project.skills.map((item) => (
-                      <span className="skill__icon" key={item}>
-                        <svg className="rounded-sm">
-                          <use
-                            href={`${skill[item as keyof typeof skill].url}`}
-                          />
-                        </svg>
-                      </span>
+                      <SkillIcon
+                        key={item}
+                        className="skill__icon"
+                        skill={item as SkillIconTypes}
+                        selected={true}
+                      />
                     ))}
                   </div>
                 )}

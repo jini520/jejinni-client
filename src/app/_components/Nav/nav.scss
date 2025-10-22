@@ -2,7 +2,7 @@
 
 @layer components {
   .nav {
-    @apply flex top-0 h-12 rounded-full items-center justify-center px-6 py-2 gap-6 z-9999;
+    @apply relative flex top-0 h-12 rounded-full items-center justify-center px-6 py-2 gap-6;
 
     background: RGB(from var(--color-gray-400) r g b / 0.5);
     backdrop-filter: blur(4px);

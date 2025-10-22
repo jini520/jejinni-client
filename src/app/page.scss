@@ -2,10 +2,10 @@
 
 @layer components {
   .home {
-    @apply py-12;
+    @apply relative py-12;
   }  
 
   .nav-container {
-    @apply mt-12 sticky top-12 min-w-0 flex justify-center;
+    @apply relative mt-12 sticky top-12 min-w-0 flex justify-center z-9999;
   }
 }

@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import Section from "../Section";
+import SkillIcon, { SkillIconTypes } from "../../SkillIcon/SkillIcon";
 import "./skills-section.scss";
-import skill from "@/app/_constants/skills.json";
 
 const skills = {
   catagory: ["language", "frontend", "library", "build", "tools"],
@@ -19,6 +19,8 @@ const skills = {
       "redux",
       "storybook",
       "sass",
+      "styled-components",
+      "tanstack-query",
     ],
     build: ["vite", "docker"],
     tools: ["figma", "github", "gitlab", "jira", "notion"],
@@ -44,7 +46,7 @@ const SkillsSection = () => {
         <ul className="filter__items">
           <li
             className={classNames("filter__item", {
-              active: selected === "language",
+              selected: selected === "language",
             })}
             onClick={handleClickFilterItem}
             value={0}
@@ -53,7 +55,7 @@ const SkillsSection = () => {
           </li>
           <li
             className={classNames("filter__item", {
-              active: selected === "frontend",
+              selected: selected === "frontend",
             })}
             onClick={handleClickFilterItem}
             value={1}
@@ -62,7 +64,7 @@ const SkillsSection = () => {
           </li>
           <li
             className={classNames("filter__item", {
-              active: selected === "library",
+              selected: selected === "library",
             })}
             onClick={handleClickFilterItem}
             value={2}
@@ -71,7 +73,7 @@ const SkillsSection = () => {
           </li>
           <li
             className={classNames("filter__item", {
-              active: selected === "build",
+              selected: selected === "build",
             })}
             onClick={handleClickFilterItem}
             value={3}
@@ -80,7 +82,7 @@ const SkillsSection = () => {
           </li>
           <li
             className={classNames("filter__item", {
-              active: selected === "tools",
+              selected: selected === "tools",
             })}
             onClick={handleClickFilterItem}
             value={4}
@@ -115,37 +117,13 @@ const SkillsSection = () => {
             <React.Fragment key={catagory}>
               {skills.items[catagory as keyof typeof skills.items].map(
                 (item) => (
-                  <span
-                    key={skill[item as keyof typeof skill].name}
-                    className={classNames("skill__icon", {
-                      active: selected === catagory || selected === null,
-                    })}
-                  >
-                    <svg width={48} height={48} className="rounded-sm">
-                      <use href={`${skill[item as keyof typeof skill].url}`} />
-                    </svg>
-                  </span>
+                  <SkillIcon
+                    key={item}
+                    className="skill__icon"
+                    skill={item as SkillIconTypes}
+                    selected={selected === catagory || selected === null}
+                  />
                 )
-              )}
-              {catagory === "library" && (
-                <React.Fragment>
-                  <span
-                    className={classNames(
-                      "skill__icon--png type__styled-components",
-                      {
-                        active: selected === catagory || selected === null,
-                      }
-                    )}
-                  ></span>
-                  <span
-                    className={classNames(
-                      "skill__icon--png type__tanstack-query",
-                      {
-                        active: selected === catagory || selected === null,
-                      }
-                    )}
-                  ></span>
-                </React.Fragment>
               )}
             </React.Fragment>
           ))}

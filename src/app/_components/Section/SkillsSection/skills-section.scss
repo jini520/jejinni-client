@@ -2,20 +2,20 @@
 
 @layer components {
   .section__skills {
-  
     .filter {
       @apply flex py-1 px-1.5 mt-8 rounded-full w-fit mx-auto text-gray-300;
   
       // background: RGB(from var(--color-gray-400) r g b / 0.5);
       background: var(--opacity-80);
-  
+      
       &__items {
         @apply flex gap-1;
       }
-  
+      
       &__item {
-        @apply py-1.5 px-3 rounded-full cursor-pointer;
-        &.active {
+        @apply py-1.5 px-3 rounded-full cursor-pointer z-10;
+        
+        &.selected {
           @apply font-bold text-white;
           
           background: var(--color-gray-400);
@@ -28,7 +28,7 @@
     }
   
     .skill__icon {
-      @apply relative w-12 h-12 z-[-1] rounded-sm bg-white;
+      @apply relative w-12 h-12 rounded-sm bg-white;
       filter: blur(8px);
       opacity: 0.5;
     }
@@ -46,7 +46,7 @@
       }
     }
     
-    .active {
+    .selected {
       @apply opacity-100;
       filter: blur(0px);
   

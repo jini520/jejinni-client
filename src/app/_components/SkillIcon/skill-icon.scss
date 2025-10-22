@@ -1,0 +1,19 @@
+@reference "tailwindcss";
+
+@layer components {
+  .icon__container {
+    @apply relative;
+  }
+
+  .icon__tooltip {
+    @apply absolute bottom-[-24px] opacity-80 z-1000;
+
+    left: 50%; // 부모 컨테이너 기준으로 중앙 정렬
+    transform: translateX(-50%); // 자신의 너비 기준 중앙에 배치
+
+    &--text {
+      @apply bg-white text-black w-fit py-0.25 px-1 rounded-sm text-sm whitespace-nowrap;
+
+    }
+  }
+}
