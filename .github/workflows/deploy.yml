@@ -104,6 +104,12 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # 커밋 메시지에 [deploy] 또는 [ci] 키워드가 있을 때만 실행
+    # workflow_dispatch로 수동 실행할 때는 항상 실행
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, '[deploy]') ||
+      contains(github.event.head_commit.message, '[ci]')
 
     steps:
       # 저장소 체크아웃
@@ -152,7 +158,7 @@ jobs:
             public/ \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client/public/
 
-          rsync -avz --delete -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+          rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
             package.json \
             pnpm-lock.yaml \
             next.config.ts \
