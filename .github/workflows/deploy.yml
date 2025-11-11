@@ -141,6 +141,9 @@ jobs:
           echo "$SSH_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
+          # 스크립트 종료 시(성공/실패 무관) SSH 키 파일 정리
+          trap 'rm -f /tmp/deploy_key' EXIT
+
           rsync -avz --delete -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
             .next/ \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client/.next/
