@@ -4,7 +4,7 @@ module.exports = {
       name: "jejinni-client",
       script: "pnpm",
       args: "start",
-      cwd: "/home/jinni/jejinni-client",
+      cwd: "/home/ubuntu/jejinni-client",
       instances: 1,
       autorestart: true,
       watch: false,

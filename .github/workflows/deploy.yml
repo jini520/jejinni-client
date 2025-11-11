@@ -1,70 +1,192 @@
-name: Deploy to Ubuntu Server
+# name: Deploy to Ubuntu Server
+
+# on:
+#   push:
+#     branches: [main, test]
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "18"
+
+#       - name: Install pnpm
+#         uses: pnpm/action-setup@v2
+#         with:
+#           version: 10
+
+#       - name: Setup pnpm cache
+#         uses: actions/setup-node@v4
+#         with:
+#           cache: "pnpm"
+
+#       - name: Install dependencies
+#         run: pnpm install --frozen-lockfile
+
+#       - name: Build application
+#         run: pnpm run build
+
+#       - name: Deploy to Ubuntu server (test branch)
+#         if: github.ref == 'refs/heads/test'
+#         uses: appleboy/ssh-action@v1.0.0
+#         with:
+#           host: ${{ secrets.SERVER_HOST }}
+#           username: ${{ secrets.SERVER_USER }}
+#           key: ${{ secrets.SERVER_SSH_KEY }}
+#           script: |
+#             cd /home/jinni/jejinni-client
+#             git pull origin test
+#             pnpm install --frozen-lockfile
+#             pnpm run build
+
+#             # PM2로 무중단 배포
+#             pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
+
+#             # docker build -t my-app-test .
+#             # docker stop my-app-test || true
+#             # docker rm my-app-test || true
+#             # docker run -d --name my-app-test -p 3001:3000 my-app-test
+
+#       - name: Deploy to Ubuntu server (main branch)
+#         if: github.ref == 'refs/heads/main'
+#         uses: appleboy/ssh-action@v1.0.0
+#         with:
+#           host: ${{ secrets.SERVER_HOST }}
+#           username: ${{ secrets.SERVER_USER }}
+#           key: ${{ secrets.SERVER_SSH_KEY }}
+#           script: |
+#             cd /home/jinni/jejinni-client
+#             git pull origin main
+#             pnpm install --frozen-lockfile
+#             pnpm run build
+
+#             # PM2로 무중단 배포
+#             pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
+
+#             # docker build -t my-app-prod .
+#             # docker stop my-app-prod || true
+#             # docker rm my-app-prod || true
+#             # docker run -d --name my-app-prod -p 3000:3000 my-app-prod
+
+# steps:
+#   - name: 🧰 Test SSH Connection
+#     uses: appleboy/ssh-action@v1.1.0
+#     with:
+#       host: ${{ secrets.SERVER_HOST }}
+#       username: ${{ secrets.SERVER_USER }}
+#       key: ${{ secrets.SERVER_SSH_KEY }}
+#       script: |
+#         echo "✅ SSH connection successful!"
+#         echo "🔹 Hostname:"
+#         hostname
+#         echo "🔹 Uptime:"
+#         uptime
+#         echo "🔹 Current user:"
+#         whoami
+#         echo "🔹 Home directory contents:"
+#         ls -al ~
+
+name: Build and Deploy to Ubuntu Server
 
 on:
   push:
-    branches: [main, test]
+    branches:
+      - main
+      - cicd
+  workflow_dispatch: # 수동 실행 전용
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    # 커밋 메시지에 [deploy] 또는 [ci] 키워드가 있을 때만 실행
+    # workflow_dispatch로 수동 실행할 때는 항상 실행
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, '[deploy]') ||
+      contains(github.event.head_commit.message, '[ci]')
+
     steps:
-      - name: Checkout code
+      # 저장소 체크아웃
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Node.js + pnpm 설치
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          version: 10
+          run_install: false
 
-      - name: Setup pnpm cache
-        uses: actions/setup-node@v4
+      # 의존성 설치 및 빌드
+      - name: Install dependencies and build Next.js
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      # rsync 설치
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
+
+      #
+
+      # .next 폴더 서버로 전송
+      - name: Sync .next folder to Oracle Instance
+        env:
+          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          echo "$SSH_KEY" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+
+          # 스크립트 종료 시(성공/실패 무관) SSH 키 파일 정리
+          trap 'rm -f /tmp/deploy_key' EXIT
+
+          rsync -avz --delete -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+            .next/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client/.next/
+
+          rsync -avz --delete -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+            public/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client/public/
+
+          rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+            package.json \
+            pnpm-lock.yaml \
+            next.config.ts \
+            tsconfig.json \
+            ecosystem.config.js \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client/
+
+      # 6️⃣ (선택) 전송 후 서버에서 파일 확인
+      - name: Verify .next exists on server
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          cache: "pnpm"
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            echo "✅ 확인: .next 폴더 존재 여부"
+            ls -la /home/ubuntu/jejinni-client/.next
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build application
-        run: pnpm run build
-
-      - name: Deploy to Ubuntu server (test branch)
-        if: github.ref == 'refs/heads/test'
+      - name: Run PM2 on Ubuntu server
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /home/jinni/jejinni-client
-            git pull origin test
+            cd /home/ubuntu/jejinni-client
             pnpm install --frozen-lockfile
-            pnpm run build
-
-            # PM2로 무중단 배포
-            pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js 
-
-            # docker build -t my-app-test .
-            # docker stop my-app-test || true
-            # docker rm my-app-test || true
-            # docker run -d --name my-app-test -p 3001:3000 my-app-test
-
-      - name: Deploy to Ubuntu server (main branch)
-        if: github.ref == 'refs/heads/main'
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            cd /home/jinni/jejinni-client
-            git pull origin main
-            pnpm install --frozen-lockfile
-            pnpm run build
 
             # PM2로 무중단 배포
             pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
