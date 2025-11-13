@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import Section from "../Section";
-import SkillIcon, { SkillIconTypes } from "../../SkillIcon/SkillIcon";
+import SkillIcon from "../../SkillIcon/SkillIcon";
 import "./skills-section.scss";
+import { IconNames } from "@/app/_constants/iconRegistry";
 
 const skills = {
   catagory: ["language", "frontend", "library", "build", "tools"],
@@ -93,26 +94,6 @@ const SkillsSection = () => {
       </div>
       <div className="flex items-center justify-center">
         <div className="skill__icons">
-          {/* <span className="skill__icon--png type__js"></span>
-          <span className="skill__icon--png type__ts"></span>
-          <span className="skill__icon--png type__java"></span>
-          <span className="skill__icon--png type__react"></span>
-          <span className="skill__icon--png type__next"></span>
-          <span className="skill__icon--png type__rn"></span>
-          <span className="skill__icon--png type__zustand"></span>
-          <span className="skill__icon--png type__tailwind"></span>
-          <span className="skill__icon--png type__jest"></span>
-          <span className="skill__icon--png type__redux"></span>
-          <span className="skill__icon--png type__storybook"></span>
-          <span className="skill__icon--png type__linux"></span>
-          <span className="skill__icon--png type__vite"></span>
-          <span className="skill__icon--png type__github"></span>
-          <span className="skill__icon--png type__gitlab"></span>
-          <span className="skill__icon--png type__jira"></span>
-          <span className="skill__icon--png type__docker"></span>
-          <span className="skill__icon--png type__figma"></span>
-          <span className="skill__icon--png type__recoil"></span>
-          <span className="skill__icon--png type__notion"></span> */}
           {skills.catagory.map((catagory) => (
             <React.Fragment key={catagory}>
               {skills.items[catagory as keyof typeof skills.items].map(
@@ -120,7 +101,7 @@ const SkillsSection = () => {
                   <SkillIcon
                     key={item}
                     className="skill__icon"
-                    skill={item as SkillIconTypes}
+                    skill={item as IconNames}
                     selected={selected === catagory || selected === null}
                   />
                 )
