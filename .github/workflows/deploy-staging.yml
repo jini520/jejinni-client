@@ -1,0 +1,97 @@
+name: Build and Deploy to Staging Server
+
+on:
+  push:
+    branches:
+      - feat/*
+      - refactor/*
+  workflow_dispatch: # 수동 실행 전용
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 저장소 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Node.js + pnpm 설치
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      # 의존성 설치 및 빌드
+      - name: Install dependencies and build Next.js
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      # rsync 설치
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
+
+      #
+
+      # .next 폴더 서버로 전송
+      - name: Sync .next folder to Oracle Instance
+        env:
+          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          echo "$SSH_KEY" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+
+          # 스크립트 종료 시(성공/실패 무관) SSH 키 파일 정리
+          trap 'rm -f /tmp/deploy_key' EXIT
+
+          rsync -avz --delete -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+            .next/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client-staging/.next/
+
+          rsync -avz --delete -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+            public/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client-staging/public/
+
+          rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" \
+            package.json \
+            pnpm-lock.yaml \
+            next.config.ts \
+            tsconfig.json \
+            ecosystem.config.js \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client-staging/
+
+      # 6️⃣ (선택) 전송 후 서버에서 파일 확인
+      - name: Verify .next exists on server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            echo "✅ 확인: .next 폴더 존재 여부"
+            ls -la /home/ubuntu/jejinni-client-staging/.next
+
+      - name: Run PM2 on Ubuntu server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/jejinni-client-staging
+            pnpm install --frozen-lockfile
+
+            # PM2로 무중단 배포
+            pm2 reload jejinni-client-staging || pm2 start ecosystem.config.js --only jejinni-client-staging
+
+            # docker build -t my-app-prod .
+            # docker stop my-app-prod || true
+            # docker rm my-app-prod || true
+            # docker run -d --name my-app-prod -p 3000:3000 my-app-prod
