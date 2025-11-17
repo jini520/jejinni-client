@@ -20,7 +20,7 @@ const CareersSection = () => {
       <div className="timeline">
         <div className="timeline__group-title">
           <span className="bar"></span>
-          <span>업무경력</span>
+          <span className="title">업무경력</span>
           <span className="bar bar__reverse"></span>
         </div>
         <ul className="timeline__list">
@@ -70,7 +70,7 @@ const CareersSection = () => {
       <div className="timeline">
         <div className="timeline__group-title">
           <span className="bar"></span>
-          <span>프로젝트</span>
+          <span className="title">프로젝트</span>
           <span className="bar bar__reverse"></span>
         </div>
         <ul className="timeline__list">

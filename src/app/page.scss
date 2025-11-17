@@ -6,6 +6,7 @@
   }  
 
   .nav-container {
-    @apply relative mt-12 sticky top-12 min-w-0 flex justify-center z-9999;
+    @apply relative sticky top-12 min-w-0 flex justify-center z-9999;
+    @apply sm:mt-12
   }
 }

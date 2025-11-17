@@ -6,6 +6,7 @@ import Jieut from "public/icons/jieut.svg";
 import Mieum from "public/icons/mieum.svg";
 import classnames from "classnames";
 import Link from "next/link";
+import HamburgerIcon from "public/icons/hamburger.svg";
 
 const navItems = [
   {
@@ -83,6 +84,9 @@ const Nav = () => {
           {item.label}
         </Link>
       ))}
+      <button className="nav-hamburger">
+        <HamburgerIcon width={24} height={24} />
+      </button>
     </nav>
   );
 };
