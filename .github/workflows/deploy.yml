@@ -189,7 +189,7 @@ jobs:
             pnpm install --frozen-lockfile
 
             # PM2로 무중단 배포
-            pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
+            pm2 reload jejinni-client || pm2 start ecosystem.config.js --only jejinni-client
 
             # docker build -t my-app-prod .
             # docker stop my-app-prod || true
