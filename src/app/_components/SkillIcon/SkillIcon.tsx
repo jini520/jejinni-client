@@ -1,46 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import skills from "@/app/_constants/skills.json";
 import classNames from "classnames";
 import "./skill-icon.scss";
-
-export type SkillIconTypes =
-  | "javascript"
-  | "typescript"
-  | "java"
-  | "react"
-  | "nextjs"
-  | "reactnative"
-  | "zustand"
-  | "recoil"
-  | "tailwind"
-  | "jest"
-  | "redux"
-  | "storybook"
-  | "vite"
-  | "docker"
-  | "figma"
-  | "github"
-  | "gitlab"
-  | "jira"
-  | "notion"
-  | "sass"
-  | "electron"
-  | "solidity";
-
-interface SkillIconProps {
-  className?: string;
-  size?: "sm" | "md" | "lg";
-  selected: boolean;
-  skill: SkillIconTypes;
-}
+import { iconRegistry, IconNames } from "@/app/_constants/iconRegistry";
 
 const sizeMap = {
   sm: 24,
   md: 48,
   lg: 72,
 };
+interface SkillIconProps {
+  className?: string;
+  size?: keyof typeof sizeMap;
+  selected: boolean;
+  skill: IconNames;
+}
 
 const SkillIcon = ({
   className,
@@ -57,38 +32,28 @@ const SkillIcon = ({
     setIsHovered(false);
   };
 
+  if (!iconRegistry[skill as IconNames]) {
+    console.log(iconRegistry[skill], skill);
+  }
+
+  const IconComponent = iconRegistry[skill as IconNames];
+
   return (
     <div
       className="icon__container"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {skills[skill as keyof typeof skills].type === "svg" ? (
-        <div
-          className={classNames(className, {
-            selected: selected,
-          })}
-        >
-          <svg
-            width={sizeMap[size]}
-            height={sizeMap[size]}
-            className="rounded-sm"
-          >
-            <use href={`${skills[skill as keyof typeof skills].url}`} />
-          </svg>
-        </div>
-      ) : (
-        <div
-          className={classNames(`${className}--png type__${skill}`, {
-            selected: selected || selected === null,
-          })}
-        ></div>
-      )}
+      <div
+        className={classNames(`icon__${size}`, className, {
+          selected: selected,
+        })}
+      >
+        <IconComponent width={sizeMap[size]} height={sizeMap[size]} />
+      </div>
       {isHovered && selected && (
         <div className="icon__tooltip">
-          <p className="icon__tooltip--text">
-            {skills[skill as keyof typeof skills].name}
-          </p>
+          <p className="icon__tooltip--text">{skill}</p>
         </div>
       )}
     </div>
