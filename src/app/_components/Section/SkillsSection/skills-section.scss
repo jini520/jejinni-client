@@ -3,17 +3,19 @@
 @layer components {
   .section__skills {
     .filter {
-      @apply flex py-1 px-1.5 mt-8 rounded-full w-fit mx-auto text-gray-300;
-  
-      // background: RGB(from var(--color-gray-400) r g b / 0.5);
-      background: var(--opacity-80);
+      @apply flex text-sm py-1 px-1 mt-8 rounded-full w-fit mx-auto text-gray-500;
+      @apply sm:text-base;
+
+      background: RGB(from var(--color-white) r g b / 0.8);
+      // background: var(--opacity-80);
       
       &__items {
-        @apply flex gap-1;
+        @apply flex gap-0.25;
+        @apply sm:gap-1;
       }
       
       &__item {
-        @apply py-1.5 px-3 rounded-full cursor-pointer z-10;
+        @apply font-medium py-1.5 px-3 rounded-full cursor-pointer z-10;
         
         &.selected {
           @apply font-bold text-white;
@@ -33,19 +35,6 @@
       opacity: 0.5;
     }
     
-    .skill__icon--png {
-      @apply w-12 h-12;
-  
-      &::after {
-        @apply absolute rounded-sm;
-        content: '';
-        background: url('/logos/sp_skills.png');
-        background-size: 336px 192px;
-        filter: blur(8px);
-        opacity: 0.5;
-      }
-    }
-    
     .selected {
       @apply opacity-100;
       filter: blur(0px);
@@ -53,190 +42,6 @@
       &::after {
         filter: blur(0px);
         opacity: 1;
-      }
-    }
-    
-    .type__js {
-      &::after {
-        background-position: 0 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__ts {
-      &::after {
-        background-position: -48px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-    
-    .type__react {
-      &::after {
-        background-position: -96px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__next {
-      &::after {
-        background-position: -144px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__zustand {
-      &::after {
-        background-position: -192px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__styled-components {
-      &::after {
-        background-position: -240px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__tailwind {
-      &::after {
-        background-position: -288px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__jest {
-      &::after {
-        background-position: 0 -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__redux {
-      &::after {
-        background-position: -48px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__sass {
-      &::after {
-        background-position: -96px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__rn {
-      &::after {
-        background-position: -144px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__storybook {
-      &::after {
-        background-position: -192px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__tanstack-query {
-      &::after {
-        background-position: -240px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__linux {
-      &::after {
-        background-position: -288px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__vite {
-      &::after {
-        background-position: 0 -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__github {
-      &::after {
-        background-position: -48px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__gitlab {
-      &::after {
-        background-position: -96px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__jira {
-      &::after {
-        background-position: -144px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__docker {
-      &::after {
-        background-position: -192px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__figma {
-      &::after {
-        background-position: -240px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__recoil {
-      &::after {
-        background-position: -288px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__java {
-      &::after {
-        background-position: 0 -144px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__notion {
-      &::after {
-        background-position: -48px -144px;
-        width: 48px;
-        height: 48px;
       }
     }
   }
