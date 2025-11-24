@@ -26,8 +26,8 @@
       }
   
       &__item {
-        @apply flex flex-col items-start gap-4 mt-8;
-        @apply sm:grid sm:grid-cols-3;
+        @apply flex flex-col items-start gap-0.5 mt-8;
+        @apply sm:grid sm:grid-cols-3 sm:gap-4;
   
       }
   
@@ -92,11 +92,7 @@
     }
   
     .skill__icon {
-      @apply w-6 h-6 bg-white rounded-xs;
-
-      & > svg {
-        @apply w-6 h-6;
-      }
+      @apply w-7 h-7 bg-white rounded-xs;
     }
   }
 }

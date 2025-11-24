@@ -3,8 +3,8 @@ import HeroSection from "./_components/Section/HeroSection/HeroSection";
 import SkillsSection from "./_components/Section/SkillsSection/SkillsSection";
 import CareersSection from "./_components/Section/CareersSection/CareersSection";
 import EducationsSection from "./_components/Section/EducationsSection/EducationsSection";
-import "./page.scss";
 import ProjectsSection from "./_components/Section/ProjectsSection/ProjectsSection";
+import "./page.scss";
 
 export default function Home() {
   return (

@@ -11,7 +11,15 @@ const ProjectsSection = () => {
         주요 프로젝트의 상세 내용을 확인할 수 있습니다.
       </p>
       <div className="project__cards">
-        <ProjectCard />
+        {["1", "2", "3"].map((item, index) => (
+          <ProjectCard
+            key={index}
+            id={index.toString()}
+            title={item}
+            discription={item}
+            skills={["1", "2", "3"]}
+          />
+        ))}
       </div>
     </Section>
   );

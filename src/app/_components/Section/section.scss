@@ -2,7 +2,7 @@
 
 @layer components {
   .section {
-    @apply relative mt-20;
+    @apply relative mt-16;
     @apply sm:mt-28;
 
     scroll-margin-top: 150px; /* 각 섹션의 상단에서 100px 떨어지게 */
