@@ -6,6 +6,7 @@ import Section from "../Section";
 import SkillIcon from "../../SkillIcon/SkillIcon";
 import "./skills-section.scss";
 import { IconNames } from "@/app/_constants/iconRegistry";
+import LiquidGlass from "../../LiquidGlass/LiquidGlass";
 
 const skills = {
   catagory: ["language", "frontend", "library", "build", "tools"],
@@ -43,7 +44,7 @@ const SkillsSection = () => {
     <Section id="skills" className="section__skills">
       <h3 className="section__title">기술 스택</h3>
       <p className="section__description">아래 기술들을 사용할 수 있습니다.</p>
-      <div className="filter">
+      <LiquidGlass className="filter">
         <ul className="filter__items">
           <li
             className={classNames("filter__item", {
@@ -91,7 +92,7 @@ const SkillsSection = () => {
             도구
           </li>
         </ul>
-      </div>
+      </LiquidGlass>
       <div className="flex items-center justify-center">
         <div className="skill__icons">
           {skills.catagory.map((catagory) => (
