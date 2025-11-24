@@ -2,15 +2,14 @@
 
 @layer components {
   .nav {
-    @apply relative flex top-0 h-12 rounded-full items-center justify-center px-6 py-2 gap-6;
-    @apply sm:h-12;
+    @apply relative flex top-0 rounded-full;
     
-    background: RGB(from var(--color-gray-400) r g b / 0.5);
-    backdrop-filter: blur(4px);
+    // background: RGB(from var(--color-gray-400) r g b / 0.5);
+    // backdrop-filter: blur(4px);
   }
 
   .logo {
-    @apply grid grid-cols-2 grid-cols-2 justify-center grid-rows-[14px_14px] grid-cols-[14px_14px];
+    @apply px-4 py-2 grid grid-cols-2 grid-cols-2 justify-center grid-rows-[14px_14px] grid-cols-[14px_14px];
 
     & > svg {
       @apply w-4 h-4 stroke-40;
@@ -49,15 +48,15 @@
   }
 
   .nav-item {
-    @apply sm:block hidden font-medium text-gray-100 cursor-pointer px-3 py-2 rounded-full;
+    @apply relative sm:block hidden font-medium text-white cursor-pointer px-4 py-3 rounded-full;
 
     list-style: none;
 
     &.active {
       @apply font-bold;
-
-      color: var(--color-white);
-      background-color: var(--opacity-20);
+      
+      box-shadow: inset 0 0 20px 2px rgba(255, 255, 255, 0.45);
+      // background-color: rgba(255, 255, 255, 0.15);
     }
   }
 

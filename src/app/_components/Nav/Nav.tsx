@@ -7,6 +7,7 @@ import Mieum from "public/icons/mieum.svg";
 import classnames from "classnames";
 import Link from "next/link";
 import HamburgerIcon from "public/icons/hamburger.svg";
+import LiquidGlass from "../LiquidGlass/LiquidGlass";
 
 const navItems = [
   {
@@ -66,27 +67,28 @@ const Nav = () => {
 
   return (
     <nav className="nav">
-      {/* <ul className="nav-container"> */}
-      <Link href="" className="logo">
-        <Jieut color="var(--color-primary-orange)" />
-        <span></span>
-        <Jieut color="var(--color-primary-green)" />
-        <Mieum color="var(--color-primary-blue)" />
-      </Link>
-      {navItems.map((item) => (
-        <Link
-          href={item.href}
-          className={classnames("nav-item", {
-            active: activeItem === item.id,
-          })}
-          key={item.label}
-        >
-          {item.label}
+      <LiquidGlass>
+        <Link href="" className="logo">
+          <Jieut color="var(--color-primary-orange)" />
+          <span></span>
+          <Jieut color="var(--color-primary-green)" />
+          <Mieum color="var(--color-primary-blue)" />
         </Link>
-      ))}
-      <button className="nav-hamburger">
-        <HamburgerIcon width={24} height={24} />
-      </button>
+        {navItems.map((item) => (
+          <Link
+            href={item.href}
+            className={classnames("nav-item", {
+              active: activeItem === item.id,
+            })}
+            key={item.label}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <button className="nav-hamburger">
+          <HamburgerIcon width={24} height={24} />
+        </button>
+      </LiquidGlass>
     </nav>
   );
 };
