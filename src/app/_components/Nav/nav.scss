@@ -2,14 +2,28 @@
 
 @layer components {
   .nav {
-    @apply relative flex top-0 rounded-full;
+    @apply relative w-[10rem];
+    @apply sm:w-auto;
+
+    justify-self: center;
+    transition: width 1s;
     
-    // background: RGB(from var(--color-gray-400) r g b / 0.5);
-    // backdrop-filter: blur(4px);
+    .nav-wrapper {
+      @apply rounded-full;
+    }
+    
+    .nav-inner {
+      @apply flex px-2 py-2 gap-2 items-center justify-between;
+    }
+
+    &--open {
+      @apply w-full;
+      @apply sm:w-auto;
+    }
   }
 
   .logo {
-    @apply px-4 py-2 grid grid-cols-2 grid-cols-2 justify-center grid-rows-[14px_14px] grid-cols-[14px_14px];
+    @apply px-4 py-2 grid grid-cols-2 grid-cols-2 justify-center grid-rows-[1rem_1rem] grid-cols-[1rem_1rem];
 
     & > svg {
       @apply w-4 h-4 stroke-40;
@@ -48,9 +62,10 @@
   }
 
   .nav-item {
-    @apply relative sm:block hidden font-medium text-white cursor-pointer px-4 py-3 rounded-full;
+    @apply relative sm:block hidden font-medium cursor-pointer px-4 py-3 rounded-full;
 
     list-style: none;
+    color: var(--color-text-primary);
 
     &.active {
       @apply font-bold;
@@ -61,10 +76,25 @@
   }
 
   .nav-hamburger {
-    @apply sm:hidden block;
+    @apply px-4 py-2 sm:hidden block;
+  }
 
-    & > svg {
-      @apply text-white;
+  .nav__dropdown {
+    @apply hidden absolute! z-9999 mt-3 top-[100%] w-full left-0 rounded-[2rem] p-6;
+    @apply sm:hidden;
+
+    &--open {
+      @apply block;
+      @apply sm:hidden;
+    }
+    
+
+    &-items {
+      @apply flex flex-col gap-4;
+    }
+
+    &-item {
+      @apply text-lg;
     }
   }
 }

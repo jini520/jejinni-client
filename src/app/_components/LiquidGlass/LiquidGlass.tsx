@@ -2,10 +2,12 @@ import React from "react";
 import LiquidGlassSVG from "./LiquidGlassSVG";
 import "./liquid-glass.scss";
 import classNames from "classnames";
+import { LiquidGlassSVGProps } from "./LiquidGlassSVG";
 
 interface LiquidGlassProps {
   className?: string;
   children: React.ReactNode;
+  svgProps?: LiquidGlassSVGProps;
 }
 
 const LiquidGlass = ({ className, children }: LiquidGlassProps) => {

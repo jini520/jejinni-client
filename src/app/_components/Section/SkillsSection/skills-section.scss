@@ -2,13 +2,24 @@
 
 @layer components {
   .section__skills {
+    .filter__container {
+      @apply relative flex items-center justify-center mt-6;
+    }
+
+    .filter__wrapper {
+      @apply relative rounded-full;
+    }
+    
     .filter {
-      @apply flex text-sm px-0.5 mt-8 rounded-full w-fit mx-auto text-white;
-      @apply sm:text-base;
+      @apply relative flex p-2 rounded-full items-center justify-center;
+
+      color: var(--color-text-primary);
       
       &__items {
-        @apply flex gap-0.25;
-        @apply sm:gap-1;
+        @apply flex whitespace-nowrap;
+        @apply sm:gap-2;
+
+        flex-wrap: nowrap;
       }
       
       &__item {
@@ -23,8 +34,10 @@
     }
   
     .skill__icons {
-      @apply relative grid grid-cols-[repeat(5,48px)] auto-rows-max gap-3 mt-8;
-      @apply sm:grid-cols-[repeat(6,48px)];
+      // @apply relative grid grid-cols-[repeat(5,3rem)] auto-rows-max gap-4 mt-8;
+      // @apply sm:grid-cols-[repeat(6,3rem)];
+      @apply flex flex-wrap justify-center gap-4 mt-8 max-w-[20rem];
+      @apply sm:max-w-[24rem];
     }
   
     .skill__icon {

@@ -8,6 +8,8 @@ import classnames from "classnames";
 import Link from "next/link";
 import HamburgerIcon from "public/icons/hamburger.svg";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
+import router from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   {
@@ -38,7 +40,10 @@ const navItems = [
 ];
 
 const Nav = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,29 +70,68 @@ const Nav = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleClickHamburger = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleClickNavItem = (href: string) => {
+    setIsMenuOpen(false);
+    router.push(href);
+  };
+
   return (
-    <nav className="nav">
-      <LiquidGlass>
-        <Link href="" className="logo">
-          <Jieut color="var(--color-primary-orange)" />
-          <span></span>
-          <Jieut color="var(--color-primary-green)" />
-          <Mieum color="var(--color-primary-blue)" />
-        </Link>
-        {navItems.map((item) => (
-          <Link
-            href={item.href}
-            className={classnames("nav-item", {
-              active: activeItem === item.id,
-            })}
-            key={item.label}
-          >
-            {item.label}
+    <nav
+      className={classnames("nav", {
+        "nav--open": isMenuOpen,
+      })}
+    >
+      <LiquidGlass className="nav-wrapper">
+        <div className="nav-inner">
+          <Link href="" className="logo">
+            <Jieut color="var(--color-primary-orange)" />
+            <span></span>
+            <Jieut color="var(--color-primary-green)" />
+            <Mieum color="var(--color-primary-blue)" />
           </Link>
-        ))}
-        <button className="nav-hamburger">
-          <HamburgerIcon width={24} height={24} />
-        </button>
+          {navItems.map((item) => (
+            <Link
+              href={item.href}
+              className={classnames("nav-item", {
+                active: activeItem === item.id,
+              })}
+              key={item.label}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <button className="nav-hamburger" onClick={handleClickHamburger}>
+            <HamburgerIcon
+              width={24}
+              height={24}
+              color="var(--color-text-primary)"
+            />
+          </button>
+        </div>
+      </LiquidGlass>
+      <LiquidGlass
+        className={classnames("nav__dropdown", {
+          "nav__dropdown--open": isMenuOpen,
+        })}
+      >
+        <div className="nav__dropdown-items">
+          {navItems.map((item) => (
+            <Link
+              href={item.href}
+              className={classnames("nav__dropdown-item", {
+                active: activeItem === item.id,
+              })}
+              key={item.label}
+              onClick={() => handleClickNavItem(item.href)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
       </LiquidGlass>
     </nav>
   );

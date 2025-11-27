@@ -1,21 +1,39 @@
 import React from "react";
 
-const LiquidGlassSVG = () => {
+export interface LiquidGlassSVGProps {
+  baseFrequency?: string;
+  numOctaves?: string;
+  seed?: string;
+  stdDeviation?: string;
+  scale?: string;
+}
+
+const LiquidGlassSVG = ({
+  baseFrequency = "0.008 0.008",
+  numOctaves = "2",
+  seed = "92",
+  stdDeviation = "2",
+  scale = "70",
+}: LiquidGlassSVGProps) => {
   return (
     <svg style={{ display: "none" }}>
       <filter id="lg-dist" x="0%" y="0%" width="100%" height="100%">
         <feTurbulence
           type="fractalNoise"
-          baseFrequency="0.025 0.025"
-          numOctaves="2"
-          seed="92"
+          baseFrequency={baseFrequency}
+          numOctaves={numOctaves}
+          seed={seed}
           result="noise"
         />
-        <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
+        <feGaussianBlur
+          in="noise"
+          stdDeviation={stdDeviation}
+          result="blurred"
+        />
         <feDisplacementMap
           in="SourceGraphic"
           in2="blurred"
-          scale="95"
+          scale={scale}
           xChannelSelector="R"
           yChannelSelector="G"
         />
