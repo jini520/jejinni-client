@@ -6,8 +6,12 @@
       &__group-title {
         @apply flex items-center justify-center gap-4 mt-10 text-gray-100;
         
+        & .title {
+          @apply whitespace-nowrap;
+        }
+
         & .bar {
-          @apply w-full max-w-80 h-[1.5px] rounded-full;
+          @apply w-[50%] h-[1.5px] rounded-full;
           
           background: linear-gradient(to right, var(--bg-color-primary), var(--color-gray-200));
         }
@@ -22,12 +26,14 @@
       }
   
       &__item {
-        @apply grid grid-cols-3 items-start gap-4 mt-8;
+        @apply flex flex-col items-start gap-0.5 mt-8;
+        @apply sm:grid sm:grid-cols-3 sm:gap-4;
   
       }
   
       &__content {
         @apply flex flex-col col-span-2;
+        @apply ml-8;
   
       }
       
@@ -86,11 +92,7 @@
     }
   
     .skill__icon {
-      @apply w-6 h-6 bg-white rounded-xs;
-
-      & > svg {
-        @apply w-6 h-6;
-      }
+      @apply w-7 h-7 bg-white rounded-xs;
     }
   }
 }

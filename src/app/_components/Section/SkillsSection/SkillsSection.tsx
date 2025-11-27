@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import Section from "../Section";
 import SkillIcon from "../../SkillIcon/SkillIcon";
-import "./skills-section.scss";
+import LiquidGlass from "../../LiquidGlass/LiquidGlass";
 import { IconNames } from "@/app/_constants/iconRegistry";
+import "./skills-section.scss";
 
 const skills = {
   catagory: ["language", "frontend", "library", "build", "tools"],
@@ -43,54 +44,58 @@ const SkillsSection = () => {
     <Section id="skills" className="section__skills">
       <h3 className="section__title">기술 스택</h3>
       <p className="section__description">아래 기술들을 사용할 수 있습니다.</p>
-      <div className="filter">
-        <ul className="filter__items">
-          <li
-            className={classNames("filter__item", {
-              selected: selected === "language",
-            })}
-            onClick={handleClickFilterItem}
-            value={0}
-          >
-            언어
-          </li>
-          <li
-            className={classNames("filter__item", {
-              selected: selected === "frontend",
-            })}
-            onClick={handleClickFilterItem}
-            value={1}
-          >
-            프론트엔드
-          </li>
-          <li
-            className={classNames("filter__item", {
-              selected: selected === "library",
-            })}
-            onClick={handleClickFilterItem}
-            value={2}
-          >
-            라이브러리
-          </li>
-          <li
-            className={classNames("filter__item", {
-              selected: selected === "build",
-            })}
-            onClick={handleClickFilterItem}
-            value={3}
-          >
-            빌드
-          </li>
-          <li
-            className={classNames("filter__item", {
-              selected: selected === "tools",
-            })}
-            onClick={handleClickFilterItem}
-            value={4}
-          >
-            도구
-          </li>
-        </ul>
+      <div className="filter__container">
+        <LiquidGlass className="filter__wrapper">
+          <div className="filter">
+            <ul className="filter__items">
+              <li
+                className={classNames("filter__item", {
+                  selected: selected === "language",
+                })}
+                onClick={handleClickFilterItem}
+                value={0}
+              >
+                언어
+              </li>
+              <li
+                className={classNames("filter__item", {
+                  selected: selected === "frontend",
+                })}
+                onClick={handleClickFilterItem}
+                value={1}
+              >
+                프론트엔드
+              </li>
+              <li
+                className={classNames("filter__item", {
+                  selected: selected === "library",
+                })}
+                onClick={handleClickFilterItem}
+                value={2}
+              >
+                라이브러리
+              </li>
+              <li
+                className={classNames("filter__item", {
+                  selected: selected === "build",
+                })}
+                onClick={handleClickFilterItem}
+                value={3}
+              >
+                빌드
+              </li>
+              <li
+                className={classNames("filter__item", {
+                  selected: selected === "tools",
+                })}
+                onClick={handleClickFilterItem}
+                value={4}
+              >
+                도구
+              </li>
+            </ul>
+          </div>
+        </LiquidGlass>
       </div>
       <div className="flex items-center justify-center">
         <div className="skill__icons">

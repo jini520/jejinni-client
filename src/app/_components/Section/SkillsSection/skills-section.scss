@@ -2,48 +2,48 @@
 
 @layer components {
   .section__skills {
+    .filter__container {
+      @apply relative flex items-center justify-center mt-6;
+    }
+
+    .filter__wrapper {
+      @apply relative rounded-full;
+    }
+    
     .filter {
-      @apply flex py-1 px-1.5 mt-8 rounded-full w-fit mx-auto text-gray-300;
-  
-      // background: RGB(from var(--color-gray-400) r g b / 0.5);
-      background: var(--opacity-80);
+      @apply relative flex p-2 rounded-full items-center justify-center;
+
+      color: var(--color-text-primary);
       
       &__items {
-        @apply flex gap-1;
+        @apply flex whitespace-nowrap;
+        @apply sm:gap-2;
+
+        flex-wrap: nowrap;
       }
       
       &__item {
-        @apply py-1.5 px-3 rounded-full cursor-pointer z-10;
+        @apply font-medium py-3 px-3 rounded-full cursor-pointer z-10;
         
         &.selected {
-          @apply font-bold text-white;
+          @apply font-bold;
           
-          background: var(--color-gray-400);
+          box-shadow: inset 0 0 16px 2px rgba(255, 255, 255, 0.45);
         }
       }
     }
   
     .skill__icons {
-      @apply relative grid grid-cols-[repeat(6,48px)] auto-rows-max gap-3 mt-8;
+      // @apply relative grid grid-cols-[repeat(5,3rem)] auto-rows-max gap-4 mt-8;
+      // @apply sm:grid-cols-[repeat(6,3rem)];
+      @apply flex flex-wrap justify-center gap-4 mt-8 max-w-[20rem];
+      @apply sm:max-w-[24rem];
     }
   
     .skill__icon {
       @apply relative w-12 h-12 rounded-sm bg-white;
       filter: blur(8px);
       opacity: 0.5;
-    }
-    
-    .skill__icon--png {
-      @apply w-12 h-12;
-  
-      &::after {
-        @apply absolute rounded-sm;
-        content: '';
-        background: url('/logos/sp_skills.png');
-        background-size: 336px 192px;
-        filter: blur(8px);
-        opacity: 0.5;
-      }
     }
     
     .selected {
@@ -53,190 +53,6 @@
       &::after {
         filter: blur(0px);
         opacity: 1;
-      }
-    }
-    
-    .type__js {
-      &::after {
-        background-position: 0 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__ts {
-      &::after {
-        background-position: -48px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-    
-    .type__react {
-      &::after {
-        background-position: -96px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__next {
-      &::after {
-        background-position: -144px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__zustand {
-      &::after {
-        background-position: -192px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__styled-components {
-      &::after {
-        background-position: -240px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__tailwind {
-      &::after {
-        background-position: -288px 0;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__jest {
-      &::after {
-        background-position: 0 -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__redux {
-      &::after {
-        background-position: -48px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__sass {
-      &::after {
-        background-position: -96px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__rn {
-      &::after {
-        background-position: -144px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__storybook {
-      &::after {
-        background-position: -192px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__tanstack-query {
-      &::after {
-        background-position: -240px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__linux {
-      &::after {
-        background-position: -288px -48px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__vite {
-      &::after {
-        background-position: 0 -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__github {
-      &::after {
-        background-position: -48px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__gitlab {
-      &::after {
-        background-position: -96px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__jira {
-      &::after {
-        background-position: -144px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__docker {
-      &::after {
-        background-position: -192px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__figma {
-      &::after {
-        background-position: -240px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__recoil {
-      &::after {
-        background-position: -288px -96px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__java {
-      &::after {
-        background-position: 0 -144px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-  
-    .type__notion {
-      &::after {
-        background-position: -48px -144px;
-        width: 48px;
-        height: 48px;
       }
     }
   }

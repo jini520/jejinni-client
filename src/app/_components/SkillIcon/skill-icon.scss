@@ -27,7 +27,7 @@
   }
 
   .icon__tooltip {
-    @apply absolute bottom-[-24px] opacity-80 z-1000;
+    @apply absolute bottom-[-24px] z-1000;
 
     left: 50%; // 부모 컨테이너 기준으로 중앙 정렬
     transform: translateX(-50%); // 자신의 너비 기준 중앙에 배치

@@ -1,0 +1,7 @@
+@reference "tailwindcss";
+
+@layer components {
+  .project__card {
+    @apply rounded-[2rem] border border-gray-200 p-6;
+  }
+}

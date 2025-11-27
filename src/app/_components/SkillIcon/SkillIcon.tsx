@@ -4,15 +4,9 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import "./skill-icon.scss";
 import { iconRegistry, IconNames } from "@/app/_constants/iconRegistry";
-
-const sizeMap = {
-  sm: 24,
-  md: 48,
-  lg: 72,
-};
 interface SkillIconProps {
   className?: string;
-  size?: keyof typeof sizeMap;
+  size?: "sm" | "md" | "lg";
   selected: boolean;
   skill: IconNames;
 }
@@ -49,7 +43,7 @@ const SkillIcon = ({
           selected: selected,
         })}
       >
-        <IconComponent width={sizeMap[size]} height={sizeMap[size]} />
+        <IconComponent />
       </div>
       {isHovered && selected && (
         <div className="icon__tooltip">
