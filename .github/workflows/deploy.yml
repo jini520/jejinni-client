@@ -99,15 +99,22 @@ on:
     branches:
       - main
       - cicd
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+      - cicd
   workflow_dispatch: # 수동 실행 전용
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # 커밋 메시지에 [deploy] 또는 [ci] 키워드가 있을 때만 실행
+    # PR이 merge되었거나, 커밋 메시지에 [deploy] 또는 [ci] 키워드가 있을 때만 실행
     # workflow_dispatch로 수동 실행할 때는 항상 실행
     if: |
       github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
       contains(github.event.head_commit.message, '[deploy]') ||
       contains(github.event.head_commit.message, '[ci]')
 
