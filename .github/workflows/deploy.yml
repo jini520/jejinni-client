@@ -99,15 +99,22 @@ on:
     branches:
       - main
       - cicd
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+      - cicd
   workflow_dispatch: # 수동 실행 전용
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # 커밋 메시지에 [deploy] 또는 [ci] 키워드가 있을 때만 실행
+    # PR이 merge되었거나, 커밋 메시지에 [deploy] 또는 [ci] 키워드가 있을 때만 실행
     # workflow_dispatch로 수동 실행할 때는 항상 실행
     if: |
       github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
       contains(github.event.head_commit.message, '[deploy]') ||
       contains(github.event.head_commit.message, '[ci]')
 
@@ -137,10 +144,22 @@ jobs:
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
 
-      #
+      # PM2 중지 (rsync 전에 리소스 확보)
+      - name: Stop all PM2 processes before rsync
+        id: pm2_stop_step
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            echo "🛑 모든 PM2 애플리케이션 중지 중..."
+            pm2 stop all || echo "⚠️ PM2 프로세스가 실행 중이지 않습니다."
 
       # .next 폴더 서버로 전송
       - name: Sync .next folder to Oracle Instance
+        id: rsync_step
         env:
           SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
         run: |
@@ -166,6 +185,29 @@ jobs:
             ecosystem.config.js \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/jejinni-client/
 
+      # PM2 중지 후 실패 시 PM2 프로세스 복구
+      - name: Recover PM2 processes on failure
+        if: failure() && steps.pm2_stop_step.outcome == 'success'
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            echo "⚠️ 배포 실패로 인한 PM2 프로세스 복구 중..."
+
+            # Production PM2 재시작 (~/jejinni-client)
+            cd /home/ubuntu/jejinni-client
+            pm2 start ecosystem.config.js --only jejinni-client || pm2 restart jejinni-client
+
+            # Staging PM2 재시작 (~/jejinni-client-staging)
+            cd /home/ubuntu/jejinni-client-staging
+            pm2 start ecosystem.config.js --only jejinni-client-staging || pm2 restart jejinni-client-staging
+
+            pm2 save
+            echo "✅ PM2 프로세스 복구 완료"
+
       # 6️⃣ (선택) 전송 후 서버에서 파일 확인
       - name: Verify .next exists on server
         uses: appleboy/ssh-action@v1.0.0
@@ -178,18 +220,26 @@ jobs:
             echo "✅ 확인: .next 폴더 존재 여부"
             ls -la /home/ubuntu/jejinni-client/.next
 
-      - name: Run PM2 on Ubuntu server
+      - name: Restart all PM2 processes on Ubuntu server
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
+            echo "🚀 모든 PM2 애플리케이션 재시작 중..."
+
+            # Production 의존성 설치 및 PM2 시작 (~/jejinni-client)
             cd /home/ubuntu/jejinni-client
             pnpm install --frozen-lockfile
+            pm2 start ecosystem.config.js --only jejinni-client || pm2 restart jejinni-client
 
-            # PM2로 무중단 배포
-            pm2 reload jejinni-client || pm2 start ecosystem.config.js --only jejinni-client
+            # Staging PM2 재시작 (~/jejinni-client-staging)
+            cd /home/ubuntu/jejinni-client-staging
+            pm2 start ecosystem.config.js --only jejinni-client-staging || pm2 restart jejinni-client-staging
+
+            # PM2 설정 저장
+            pm2 save
 
             # docker build -t my-app-prod .
             # docker stop my-app-prod || true
