@@ -15,5 +15,5 @@ jobs:
   deploy:
     uses: ./.github/workflows/_deploy-base.yml
     with:
-      environment: ${{ inputs.ENVIRONMENT }}
+      ENVIRONMENT: production
     secrets: inherit

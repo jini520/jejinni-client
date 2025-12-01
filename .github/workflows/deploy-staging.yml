@@ -11,5 +11,5 @@ jobs:
   deploy:
     uses: ./.github/workflows/_deploy-base.yml
     with:
-      ENVIRONMENT: ${{ inputs.ENVIRONMENT }}
+      ENVIRONMENT: staging
     secrets: inherit

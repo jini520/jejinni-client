@@ -6,15 +6,6 @@ on:
       ENVIRONMENT:
         required: true
         type: string
-      DEPLOY_DIR:
-        required: true
-        type: string
-      PM2_APP_NAME:
-        required: true
-        type: string
-      DEPLOY_BRANCH:
-        required: true
-        type: string
     secrets:
       SERVER_HOST:
         required: true
@@ -26,6 +17,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.ENVIRONMENT }}
     steps:
       # 저장소 체크아웃
       - name: Checkout repository
@@ -38,14 +30,14 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd ${{ inputs.DEPLOY_DIR }}
+            cd ${{ vars.DEPLOY_DIR }}
 
             git fetch origin
-            git checkout ${{ inputs.DEPLOY_BRANCH }}
-            git pull origin ${{ inputs.DEPLOY_BRANCH }}
+            git checkout ${{ vars.DEPLOY_BRANCH }}
+            git pull origin ${{ vars.DEPLOY_BRANCH }}
 
             pnpm install --frozen-lockfile
             pnpm build
 
-            pm2 start ecosystem.config.js --only ${{ inputs.PM2_APP_NAME }} || pm2 restart ${{ inputs.PM2_APP_NAME }}
+            pm2 start ecosystem.config.js --only ${{ vars.PM2_APP_NAME }} || pm2 restart ${{ vars.PM2_APP_NAME }}
             pm2 save
