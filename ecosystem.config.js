@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "jejinni-client",
       script: "pnpm",
-      args: "start",
+      args: "start -- -H 0.0.0.0",
       cwd: "/home/jinni/jejinni-client",
       instances: 1,
       autorestart: true,
@@ -12,13 +12,12 @@ module.exports = {
       env: {
         NODE_ENV: "production",
         PORT: 3000,
-        HOSTNAME: "0.0.0.0",
       },
     },
     {
       name: "jejinni-client-staging",
       script: "pnpm",
-      args: "start",
+      args: "start -- -H 0.0.0.0",
       cwd: "/home/jinni/jejinni-client-staging",
       instances: 1,
       autorestart: true,
@@ -27,7 +26,6 @@ module.exports = {
       env: {
         NODE_ENV: "development",
         PORT: 3001,
-        HOSTNAME: "0.0.0.0",
       },
     },
   ],
