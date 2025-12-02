@@ -3,6 +3,7 @@ module.exports = {
     {
       name: "jejinni-client",
       script: "pnpm",
+      args: "start",
       cwd: "/home/jinni/jejinni-client",
       instances: 1,
       autorestart: true,
@@ -16,6 +17,7 @@ module.exports = {
     {
       name: "jejinni-client-staging",
       script: "pnpm",
+      args: "start",
       cwd: "/home/jinni/jejinni-client-staging",
       instances: 1,
       autorestart: true,
