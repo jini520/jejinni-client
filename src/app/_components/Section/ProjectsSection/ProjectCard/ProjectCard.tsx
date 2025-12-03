@@ -10,7 +10,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ id, title, discription, skills }: ProjectCardProps) => {
-  return <LiquidGlass className="project__card">ProjectCard</LiquidGlass>;
+  return <LiquidGlass className="project__card">{title}</LiquidGlass>;
 };
 
 export default ProjectCard;

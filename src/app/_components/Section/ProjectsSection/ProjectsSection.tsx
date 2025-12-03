@@ -1,7 +1,7 @@
 import React from "react";
 import Section from "../Section";
+import ProjectCards from "./ProjectCards/ProjectCards";
 import "./projects-section.scss";
-import ProjectCard from "./ProjectCard/ProjectCard";
 
 const ProjectsSection = () => {
   return (
@@ -10,17 +10,7 @@ const ProjectsSection = () => {
       <p className="section__description">
         주요 프로젝트의 상세 내용을 확인할 수 있습니다.
       </p>
-      <div className="project__cards">
-        {["1", "2", "3"].map((item, index) => (
-          <ProjectCard
-            key={index}
-            id={index.toString()}
-            title={item}
-            discription={item}
-            skills={["1", "2", "3"]}
-          />
-        ))}
-      </div>
+      <ProjectCards />
     </Section>
   );
 };
