@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import "./skill-icon.scss";
-import { iconRegistry, IconNames } from "@/app/_constants/iconRegistry";
+import { iconRegistry, IconNames } from "@/constants/iconRegistry";
 interface SkillIconProps {
   className?: string;
   size?: "sm" | "md" | "lg";
