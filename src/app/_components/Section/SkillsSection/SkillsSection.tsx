@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Section from "../Section";
 import SkillIcon from "../../SkillIcon/SkillIcon";
 import LiquidGlass from "../../LiquidGlass/LiquidGlass";
-import { IconNames } from "@/app/_constants/iconRegistry";
+import { IconNames } from "@/constants/iconRegistry";
 import "./skills-section.scss";
 
 const skills = {

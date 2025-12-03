@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../Section";
-import educations from "@/app/_constants/educations.json";
+import educations from "@/constants/educations.json";
 import Astar from "public/icons/astar.svg";
 import "./educations-section.scss";
 
