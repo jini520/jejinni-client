@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-// import MSWProvider from "./_components/MSWProvider";
+import MSWProvider from "./_components/MSWProvider";
 import QueryProvider from "./_providers/QueryProvider";
 import "../styles/main.scss";
 import "./layout.scss";
@@ -26,9 +26,9 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${pretendard.variable} antialiased flex`}>
         <QueryProvider>
-          <div className="layout">{children}</div>
-          {/* <MSWProvider>
-          </MSWProvider> */}
+          <MSWProvider>
+            <div className="layout">{children}</div>
+          </MSWProvider>
         </QueryProvider>
       </body>
     </html>

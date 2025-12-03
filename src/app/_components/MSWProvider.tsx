@@ -27,7 +27,7 @@ export default function MSWProvider({ children }: MSWProviderProps) {
   }, []);
 
   // MSW가 준비되기 전까지는 로딩 표시
-  if (!mswReady) {
+  if (process.env.NODE_ENV === "development" && !mswReady) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
