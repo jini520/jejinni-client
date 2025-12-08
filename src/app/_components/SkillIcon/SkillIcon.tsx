@@ -7,7 +7,7 @@ import { iconRegistry, IconNames } from "@/constants/iconRegistry";
 interface SkillIconProps {
   className?: string;
   size?: "sm" | "md" | "lg";
-  selected: boolean;
+  selected?: boolean;
   skill: IconNames;
 }
 
@@ -43,7 +43,11 @@ const SkillIcon = ({
           selected: selected,
         })}
       >
-        <IconComponent />
+        {IconComponent ? (
+          <IconComponent />
+        ) : (
+          <div className="icon__placeholder">{skill}</div>
+        )}
       </div>
       {isHovered && selected && (
         <div className="icon__tooltip">
