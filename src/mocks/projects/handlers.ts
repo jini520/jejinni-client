@@ -13,7 +13,7 @@ export const projectHandlers = [
   // 프로젝트 단일 조회
   http.get('/api/projects/:id', ({ params }) => {
     const { id } = params;
-    const project = mockProjects.find((p) => p.id === Number(id));
+    const project = mockProjects.find((p) => p.id === id);
 
     if (!project) {
       return HttpResponse.json(
