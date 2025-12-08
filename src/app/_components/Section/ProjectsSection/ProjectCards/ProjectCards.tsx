@@ -18,7 +18,7 @@ const ProjectCards = () => {
           id={index.toString()}
           title={item.title}
           discription={item.description}
-          skills={["1", "2", "3"]}
+          skills={item.skills}
         />
       ))}
     </div>
