@@ -2,7 +2,7 @@
 
 @layer components {
   .project__card {
-    @apply rounded-[1rem] p-6 cursor-pointer;
+    @apply rounded-[1rem] p-7 cursor-pointer;
 
     &--orange {
       color: var(--color-primary-orange);
@@ -28,22 +28,25 @@
       }
     }
   }
+  .project__card-inner {
+    @apply flex flex-col gap-4 justify-between;
+  }
   .project__card-shape {
     // @apply fill-orange-500;
   }
 
   .project__card-title {
-    @apply text-xl font-bold mt-3;
+    @apply text-xl font-bold;
 
     color: var(--color-text-primary)
   }
 
   .project__card-description {
-    @apply text-sm text-gray-100 mt-4;
+    @apply text-sm text-gray-100 mt-2 min-h-14;
   }
 
   .project__card-skills {
-    @apply flex flex-wrap gap-2 mt-10;
+    @apply flex flex-wrap gap-2;
   }
 
   .project__card-skill {

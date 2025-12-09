@@ -29,18 +29,22 @@ const ProjectCard = ({ id, title, discription, skills }: ProjectCardProps) => {
         `project__card--${colorMap[color as keyof typeof colorMap]}`
       )}
     >
-      <Shape className="project__card-shape" id={id} />
-      <h4 className="project__card-title">{title}</h4>
-      <p className="project__card-description">{discription}</p>
-      <div className="project__card-skills">
-        {skills.map((skill) => (
-          <SkillIcon
-            className="project__card-skill"
-            key={skill}
-            skill={skill as IconNames}
-            size="sm"
-          />
-        ))}
+      <div className="project__card-inner">
+        <Shape className="project__card-shape" id={id} />
+        <div>
+          <h4 className="project__card-title">{title}</h4>
+          <p className="project__card-description">{discription}</p>
+        </div>
+        <div className="project__card-skills">
+          {skills.map((skill) => (
+            <SkillIcon
+              className="project__card-skill"
+              key={skill}
+              skill={skill as IconNames}
+              size="sm"
+            />
+          ))}
+        </div>
       </div>
     </LiquidGlass>
   );
