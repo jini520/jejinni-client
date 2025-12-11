@@ -1,5 +1,5 @@
 import { apiRequest } from "@/lib/api";
-import { Project } from "@/mocks/projects";
+import { Project, ProjectDetail } from "@/mocks/projects";
 
 export async function getProjects(): Promise<Project[]> {
   const response = await apiRequest<Project[]>('/api/projects');
@@ -7,8 +7,9 @@ export async function getProjects(): Promise<Project[]> {
   return response.data || [];
 }
 
-export async function getProject(id: string): Promise<Project | undefined> {
-  const response = await apiRequest<Project>(`/api/projects/${id}`);
+export async function getProject(id: string): Promise<ProjectDetail | undefined> {
+  const response = await apiRequest<ProjectDetail>(`/api/projects/${id}`);
 
+  console.log(response.data);
   return response.data;
 }
