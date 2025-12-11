@@ -6,8 +6,8 @@ import Shape4 from "public/shape/variant4.svg";
 import Shape5 from "public/shape/variant5.svg";
 import Shape6 from "public/shape/variant6.svg";
 import Shape7 from "public/shape/variant7.svg";
-import "./shape.scss";
 import classNames from "classnames";
+import "./shape.scss";
 
 type ShapeProps = {
   className?: string;

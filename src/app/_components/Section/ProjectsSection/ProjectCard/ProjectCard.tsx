@@ -2,9 +2,10 @@ import React from "react";
 import LiquidGlass from "@/app/_components/LiquidGlass/LiquidGlass";
 import Shape from "@/app/_components/Shape/Shape";
 import SkillIcon from "@/app/_components/SkillIcon/SkillIcon";
-import "./project-card.scss";
-import { IconNames } from "@/constants/iconRegistry";
 import classNames from "classnames";
+import { IconNames } from "@/constants/iconRegistry";
+import useColor from "@/hooks/useColor";
+import "./project-card.scss";
 
 interface ProjectCardProps {
   id: string;
@@ -13,21 +14,12 @@ interface ProjectCardProps {
   skills: string[];
 }
 
-const colorMap = {
-  0: "orange",
-  1: "green",
-  2: "blue",
-};
-
 const ProjectCard = ({ id, title, discription, skills }: ProjectCardProps) => {
-  const color = id.charCodeAt(0) % 3;
+  const { getColor } = useColor();
 
   return (
     <LiquidGlass
-      className={classNames(
-        "project__card",
-        `project__card--${colorMap[color as keyof typeof colorMap]}`
-      )}
+      className={classNames("project__card", `project__card--${getColor(id)}`)}
     >
       <div className="project__card-inner">
         <Shape className="project__card-shape" id={id} />

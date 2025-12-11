@@ -3,8 +3,6 @@
 @layer components {
   .shape {
     @apply w-full h-full;
-
-    color: inherit;
   }
 
   .shape--sm {
@@ -13,5 +11,9 @@
 
   .shape--md {
     @apply w-8 h-8;
+  }
+
+  .shape--lg {
+    @apply w-16 h-16;
   }
 }
