@@ -106,6 +106,7 @@ const SkillsSection = () => {
                   <SkillIcon
                     key={item}
                     className="skill__icon"
+                    size="lg"
                     skill={item as IconNames}
                     selected={selected === catagory || selected === null}
                   />

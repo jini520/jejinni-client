@@ -42,7 +42,7 @@ const CareersSection = () => {
                       <SkillIcon
                         key={item}
                         className="skill__icon"
-                        size="sm"
+                        size="md"
                         skill={item as IconNames}
                         selected={true}
                       />
@@ -94,7 +94,7 @@ const CareersSection = () => {
                       <SkillIcon
                         key={item}
                         className="skill__icon"
-                        size="sm"
+                        size="md"
                         skill={item as IconNames}
                         selected={true}
                       />

@@ -10,7 +10,9 @@
     }
 
     .section__description {
-      @apply text-gray-100 text-lg font-medium leading-tight text-center mt-12;
+      @apply text-lg font-medium leading-tight text-center mt-12;
+
+      color: var(--color-gray);
     }
   }
   .flicker-text {

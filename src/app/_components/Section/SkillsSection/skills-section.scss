@@ -41,7 +41,7 @@
     }
   
     .skill__icon {
-      @apply relative w-12 h-12 rounded-sm bg-white;
+      @apply relative;
       filter: blur(8px);
       opacity: 0.5;
     }

@@ -4,7 +4,9 @@
   .section__educations {
     .timeline {
       &__group-title {
-        @apply flex items-center justify-center gap-4 mt-10 text-gray-100;
+        @apply flex items-center justify-center gap-4 mt-10;
+
+        color: var(--color-gray);
         
         & .bar {
           @apply w-full max-w-80 h-[1.5px] rounded-full;
@@ -39,7 +41,7 @@
         & > svg {
           @apply w-3 h-3;
 
-          color: var(--color-gray-200)
+          color: var(--color-gray-200);
         }
 
       }
@@ -53,11 +55,14 @@
       }
 
       &__status {
-        @apply text-gray-100 text-sm font-medium leading-tight;
+        @apply text-sm font-medium leading-tight;
+        
+        color: var(--color-gray);
       }
 
       &__description {
-          @apply flex flex-col text-gray-100 text-sm font-medium leading-tight;
+          @apply flex flex-col text-sm font-medium leading-tight;
+          color: var(--color-gray);
       }
     }
   }

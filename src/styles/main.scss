@@ -90,6 +90,20 @@ html {
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
+
+  scrollbar-gutter: stable;
+  // &::-webkit-scrollbar {
+  //   width: 10px;  
+  // }
+  
+  // &::-webkit-scrollbar-thumb {
+  //     background: var(--color-gray-200); /* 스크롤바 색상 */
+  //     border-radius: 10px; /* 스크롤바 둥근 테두리 */
+  // }
+  
+  // &::-webkit-scrollbar-track {
+  //     background: transparent;  /*스크롤바 뒷 배경 색상*/
+  // }
 }
 
 body {

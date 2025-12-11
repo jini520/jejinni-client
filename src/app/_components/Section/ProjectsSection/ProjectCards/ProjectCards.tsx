@@ -4,6 +4,7 @@ import { useProjects } from "@/hooks/useProjects";
 import React from "react";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import ProjectCardSkeleton from "../ProjectCard/ProjectCardSkeleton";
+import Link from "next/link";
 
 const ProjectCards = () => {
   const { data: projects, isLoading, error } = useProjects();
@@ -22,14 +23,15 @@ const ProjectCards = () => {
 
   return (
     <div className="project__cards">
-      {projects?.map((item, index) => (
-        <ProjectCard
-          key={index}
-          id={index.toString()}
-          title={item.title}
-          discription={item.description}
-          skills={item.skills}
-        />
+      {projects?.map((item) => (
+        <Link href={`/projects/${item.id}`} key={item.id} scroll={false}>
+          <ProjectCard
+            id={item.id}
+            title={item.title}
+            discription={item.description}
+            skills={item.skills}
+          />
+        </Link>
       ))}
     </div>
   );

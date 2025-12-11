@@ -4,30 +4,24 @@
   .icon__container {
     @apply relative;
   }
-  .icon__sm {
-    @apply w-6 h-6;
+  .icon__icon {
+    @apply relative bg-white;
+    
+    overflow: hidden;
+  }
 
-    & > svg {
-      @apply rounded-xs;
-    }
+  .icon__sm {
+    @apply w-6 h-6 rounded-sm;
   }
   .icon__md {
-    @apply w-12 h-12;
-
-    & > svg {
-      @apply rounded-sm;
-    }
+    @apply w-[2.1rem] h-[2.1rem] rounded-[0.275rem];
   }
   .icon__lg {
-    @apply w-18 h-18;
-
-    & > svg {
-      @apply rounded-md;
-    }
+    @apply w-12 h-12 rounded-md;
   }
 
   .icon__tooltip {
-    @apply absolute bottom-[-24px] z-1000;
+    @apply absolute bottom-[-24px] z-3;
 
     left: 50%; // 부모 컨테이너 기준으로 중앙 정렬
     transform: translateX(-50%); // 자신의 너비 기준 중앙에 배치

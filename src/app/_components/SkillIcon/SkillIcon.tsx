@@ -15,14 +15,16 @@ const SkillIcon = ({
   className,
   size = "md",
   skill,
-  selected,
+  selected = true,
 }: SkillIconProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
+    console.log("handleMouseEnter");
     setIsHovered(true);
   };
   const handleMouseLeave = () => {
+    console.log("handleMouseLeave");
     setIsHovered(false);
   };
 
@@ -39,7 +41,7 @@ const SkillIcon = ({
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className={classNames(`icon__${size}`, className, {
+        className={classNames(className, "icon__icon", `icon__${size}`, {
           selected: selected,
         })}
       >
