@@ -7,7 +7,8 @@ import ProjectCardSkeleton from "../ProjectCard/ProjectCardSkeleton";
 import Link from "next/link";
 
 const ProjectCards = () => {
-  const { data: projects, isLoading, error } = useProjects();
+  const { data, isLoading, error } = useProjects();
+  const projects = data?.items || [];
 
   if (isLoading)
     return (
@@ -18,12 +19,12 @@ const ProjectCards = () => {
       </div>
     );
 
-  if (projects?.length === 0) return <div>No projects found</div>;
+  if (projects.length === 0) return <div>No projects found</div>;
   // if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="project__cards">
-      {projects?.map((item) => (
+      {projects.map((item) => (
         <Link href={`/projects/${item.id}`} key={item.id} scroll={false}>
           <ProjectCard
             id={item.id}

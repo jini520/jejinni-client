@@ -44,7 +44,14 @@
   .project__card-description {
     @apply text-sm mt-2 min-h-14;
 
-    color: var(--color-gray)
+    color: var(--color-gray);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 
   .project__card-skills {

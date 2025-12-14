@@ -5,13 +5,19 @@ import { useQuery } from "@tanstack/react-query"
 
 export const projectKeys = {
   all: ['projects'] as const,
+  list: (page: number, size: number) => ['projects', 'list', { page, size }] as const,
   detail: (id: string) => ['projects', id] as const,
 }
 
-export function useProjects() {
+interface UseProjectsParams {
+  page?: number;
+  size?: number;
+}
+
+export function useProjects({ page = 0, size = 10 }: UseProjectsParams = {}) {
   return useQuery({
-    queryKey: projectKeys.all,
-    queryFn: getProjects,
+    queryKey: projectKeys.list(page, size),
+    queryFn: () => getProjects({ page, size }),
   })
 }
 
