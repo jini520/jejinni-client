@@ -20,17 +20,11 @@ const SkillIcon = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    console.log("handleMouseEnter");
     setIsHovered(true);
   };
   const handleMouseLeave = () => {
-    console.log("handleMouseLeave");
     setIsHovered(false);
   };
-
-  if (!iconRegistry[skill as IconNames]) {
-    console.log(iconRegistry[skill], skill);
-  }
 
   const IconComponent = iconRegistry[skill as IconNames];
 

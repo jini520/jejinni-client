@@ -1,5 +1,3 @@
-'use client';
-
 import { ApiResponse } from "@/types/api.types";
 
 // API 기본 설정
