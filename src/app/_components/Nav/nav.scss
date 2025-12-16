@@ -5,7 +5,7 @@
     @apply relative w-[10rem];
     @apply sm:w-auto;
 
-    transition: width 1s;
+    transition: width 0.5s;
     
     .nav-wrapper {
       @apply rounded-full;
