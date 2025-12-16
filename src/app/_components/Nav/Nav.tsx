@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./nav.scss";
 import Jieut from "public/icons/jieut.svg";
 import Mieum from "public/icons/mieum.svg";
 import classnames from "classnames";
 import Link from "next/link";
 import HamburgerIcon from "public/icons/hamburger.svg";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
-import router from "next/navigation";
 import { useRouter } from "next/navigation";
+import "./nav.scss";
 
 const navItems = [
   {

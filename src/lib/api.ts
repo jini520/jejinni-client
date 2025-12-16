@@ -1,14 +1,20 @@
 import { ApiResponse } from "@/types/api.types";
 
 // API 기본 설정
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+// MSW 사용 시 상대 경로, 실제 서버 사용 시 절대 경로
+const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_USE_MSW === 'true') {
+    return '';  // MSW는 상대 경로로 인터셉트
+  }
+  return process.env.NEXT_PUBLIC_API_URL || '';
+};
 
 // 공통 fetch 함수
 export async function apiRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<ApiResponse<T>> {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = `${getBaseUrl()}${endpoint}`;
   
   const config: RequestInit = {
     headers: {
