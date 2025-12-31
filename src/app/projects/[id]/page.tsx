@@ -1,0 +1,23 @@
+import React from "react";
+import ProjectDetail from "@/app/_components/Section/ProjectsSection/ProjectDetail/ProjectDetail";
+import "./page.scss";
+import BackButton from "@/app/_components/BackButton/BackButton";
+
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+const ProjectPage = async ({ params }: Props) => {
+  const { id } = await params;
+
+  return (
+    <div className="project__page-container">
+      <ProjectDetail id={id} />
+      <div className="flex items-center justify-center mt-12">
+        <BackButton>홈으로 돌아가기</BackButton>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectPage;

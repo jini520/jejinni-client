@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import "./skill-icon.scss";
-import { iconRegistry, IconNames } from "@/app/_constants/iconRegistry";
+import { iconRegistry, IconNames } from "@/constants/iconRegistry";
 interface SkillIconProps {
   className?: string;
   size?: "sm" | "md" | "lg";
-  selected: boolean;
+  selected?: boolean;
   skill: IconNames;
 }
 
@@ -15,7 +15,7 @@ const SkillIcon = ({
   className,
   size = "md",
   skill,
-  selected,
+  selected = true,
 }: SkillIconProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -26,10 +26,6 @@ const SkillIcon = ({
     setIsHovered(false);
   };
 
-  if (!iconRegistry[skill as IconNames]) {
-    console.log(iconRegistry[skill], skill);
-  }
-
   const IconComponent = iconRegistry[skill as IconNames];
 
   return (
@@ -39,11 +35,15 @@ const SkillIcon = ({
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className={classNames(`icon__${size}`, className, {
+        className={classNames(className, "icon__icon", `icon__${size}`, {
           selected: selected,
         })}
       >
-        <IconComponent />
+        {IconComponent ? (
+          <IconComponent />
+        ) : (
+          <div className="icon__placeholder">{skill}</div>
+        )}
       </div>
       {isHovered && selected && (
         <div className="icon__tooltip">

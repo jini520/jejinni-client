@@ -4,7 +4,9 @@
   .section__careers {
     .timeline {
       &__group-title {
-        @apply flex items-center justify-center gap-4 mt-10 text-gray-100;
+        @apply flex items-center justify-center gap-4 mt-10;
+
+        color: var(--color-gray);
         
         & .title {
           @apply whitespace-nowrap;
@@ -42,7 +44,7 @@
         
         & > svg {
           // @apply w-6 h-6;
-          color: var(--color-gray-200)
+          color: var(--color-gray-100)
         }
   
       }
@@ -56,11 +58,15 @@
       }
   
       &__status {
-        @apply text-gray-100 text-sm font-medium leading-tight;
+        @apply text-sm font-medium leading-tight;
+
+        color: var(--color-gray);
       }
   
       &__description {
-          @apply flex flex-col text-gray-100 text-sm font-medium leading-tight;
+          @apply flex flex-col text-sm font-medium leading-tight;
+
+          color: var(--color-gray);
       }
 
       &__button-detail {
@@ -92,7 +98,6 @@
     }
   
     .skill__icon {
-      @apply w-7 h-7 bg-white rounded-xs;
     }
   }
 }

@@ -2,11 +2,11 @@ import React from "react";
 import Section from "../Section";
 import StarBurst from "public/icons/star-burst.svg";
 import Accordion from "./Accordion/Accordion";
-import careers from "@/app/_constants/careers.json";
-import projects from "@/app/_constants/projects.json";
+import careers from "@/constants/careers.json";
+import projects from "@/constants/projects.json";
 import "./careers-section.scss";
 import SkillIcon from "../../SkillIcon/SkillIcon";
-import { IconNames } from "@/app/_constants/iconRegistry";
+import { IconNames } from "@/constants/iconRegistry";
 
 const CareersSection = () => {
   return (
@@ -42,7 +42,7 @@ const CareersSection = () => {
                       <SkillIcon
                         key={item}
                         className="skill__icon"
-                        size="sm"
+                        size="md"
                         skill={item as IconNames}
                         selected={true}
                       />
@@ -94,7 +94,7 @@ const CareersSection = () => {
                       <SkillIcon
                         key={item}
                         className="skill__icon"
-                        size="sm"
+                        size="md"
                         skill={item as IconNames}
                         selected={true}
                       />
