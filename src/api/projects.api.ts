@@ -1,5 +1,5 @@
 import { apiRequest } from "@/lib/api";
-import { Project, ProjectDetail } from "@/mocks/projects";
+import { Project, ProjectDetail} from '@/mocks/projects'
 import { PageResponse } from "@/types/api.types";
 
 interface GetProjectsParams {

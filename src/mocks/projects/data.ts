@@ -1,4 +1,4 @@
-import type { Project, ProjectDetail } from './types';
+import { Project, ProjectDetail } from './types';
 
 export const mockProjects: Project[] = [
   {
