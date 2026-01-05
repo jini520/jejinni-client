@@ -4,6 +4,7 @@ import SkillsSection from "./_components/Section/SkillsSection/SkillsSection";
 import CareersSection from "./_components/Section/CareersSection/CareersSection";
 import EducationsSection from "./_components/Section/EducationsSection/EducationsSection";
 import ProjectsSection from "./_components/Section/ProjectsSection/ProjectsSection";
+import CertificationsSection from "./_components/Section/CertificationsSection/CertificationsSection";
 import "./page.scss";
 
 export default function Home() {
@@ -17,9 +18,7 @@ export default function Home() {
       <CareersSection />
       <ProjectsSection />
       <EducationsSection />
-      <section id="awards" className="section section__awards">
-        <h3 className="section__title">자격 및 수상</h3>
-      </section>
+      <CertificationsSection />
     </div>
   );
 }
