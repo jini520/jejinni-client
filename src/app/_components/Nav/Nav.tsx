@@ -32,9 +32,9 @@ const navItems = [
     href: "#education",
   },
   {
-    id: "awards",
+    id: "certifications",
     label: "자격/수상",
-    href: "#awards",
+    href: "#certifications",
   },
 ];
 
