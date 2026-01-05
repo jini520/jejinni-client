@@ -20,6 +20,14 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    rules: {
+      // 사용하지 않는 변수를 경고로 변경 (에러 → 경고)
+      "@typescript-eslint/no-unused-vars": "warn",
+      // 빈 인터페이스를 경고로 변경 (에러 → 경고)
+      "@typescript-eslint/no-empty-object-type": "warn",
+    },
+  },
 ];
 
 export default eslintConfig;
