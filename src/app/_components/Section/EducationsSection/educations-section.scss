@@ -20,11 +20,11 @@
       }
 
       &__list {
-        // @apply flex flex-col gap-4;
+        @apply mt-8;
       }
 
       &__item {
-        @apply flex flex-col gap-0.5 items-start mt-8;
+        @apply flex flex-col gap-0.5 items-start min-h-16;
         @apply sm:grid sm:grid-cols-3 sm:gap-4;
 
       }

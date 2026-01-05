@@ -1,0 +1,64 @@
+"use client";
+
+import React from "react";
+import Section from "../Section";
+import { useCertifications } from "@/hooks/useCertifications";
+import CertificationIcon from "public/icons/certifications.svg";
+import AwardIcon from "public/icons/award.svg";
+import LiquidGlass from "../../LiquidGlass/LiquidGlass";
+import "./certifications-section.scss";
+
+const CertificationsSection = () => {
+  const { data, isLoading } = useCertifications();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const certifications = data?.certifications || [];
+  const awards = data?.awards || [];
+
+  return (
+    <Section id="certifications" className="section section__certifications">
+      <h3 className="section__title">자격 및 수상</h3>
+      <div className="certifications__list">
+        {certifications.map((certification) => (
+          <div className="certification__item" key={certification.id}>
+            <div className="certification__header">
+              <LiquidGlass className="certification__icon">
+                <CertificationIcon width={24} height={24} />
+              </LiquidGlass>
+              <span className="certification__date">{certification.date}</span>
+            </div>
+            <div className="certification__content">
+              <div>{certification.name}</div>
+              <div className="certification__description">
+                <span>{certification.organization}, </span>
+                <span>{certification.tier}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+        {awards.map((award) => (
+          <div className="certification__item" key={award.id}>
+            <div className="certification__header">
+              <LiquidGlass className="certification__icon">
+                <AwardIcon width={24} height={24} />
+              </LiquidGlass>
+              <span className="certification__date">{award.date}</span>
+            </div>
+            <div className="">
+              <div className="certification__content">
+                <div>{award.name}</div>
+                <div className="certification__description">
+                  <span>{award.organization}, </span>
+                  <span>{award.tier}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+export default CertificationsSection;

@@ -1,0 +1,35 @@
+@reference "tailwindcss";
+
+@layer components {
+  .section__certifications {
+    .certifications__list {
+      @apply flex flex-col gap-4 mt-8;
+    }
+
+    .certification__item {
+      @apply grid grid-cols-3 gap-4 min-h-16;  
+    }
+
+    .certification__header {
+      @apply flex justify-self-end gap-6;
+    }
+
+    .certification__icon {
+      @apply p-3 w-12 h-12 rounded-lg;
+    }
+
+    .certification__content {
+      @apply flex flex-col col-span-2 text-lg font-bold ml-8;
+    }
+
+    .certification__description {
+      @apply text-sm;
+
+      color: var(--color-gray);
+    }
+
+    .certification__date {
+      @apply  min-w-20;
+    }
+  }
+}

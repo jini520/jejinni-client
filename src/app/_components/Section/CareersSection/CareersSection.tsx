@@ -1,14 +1,24 @@
+"use client";
+
 import React from "react";
 import Section from "../Section";
 import StarBurst from "public/icons/star-burst.svg";
 import Accordion from "./Accordion/Accordion";
-import careers from "@/constants/careers.json";
-import projects from "@/constants/projects.json";
+// import careers from "@/constants/careers.json";
+// import projects from "@/constants/projects.json";
 import "./careers-section.scss";
 import SkillIcon from "../../SkillIcon/SkillIcon";
 import { IconNames } from "@/constants/iconRegistry";
+import { useCareers } from "@/hooks/useCareers";
 
 const CareersSection = () => {
+  const { data, isLoading } = useCareers();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const businesses = data?.businesses || [];
+  const projects = data?.projects || [];
+
   return (
     <Section id="career" className="section section__careers">
       <h3 className="section__title">경력</h3>
@@ -24,16 +34,18 @@ const CareersSection = () => {
           <span className="bar bar__reverse"></span>
         </div>
         <ul className="timeline__list">
-          {careers.map((career) => (
+          {businesses.map((career) => (
             <li className="timeline__item" key={career.company}>
               <span className="timeline__header">
                 <StarBurst />
-                <span className="timeline__date">{career.date}</span>
+                <span className="timeline__date">
+                  {career.startDate} - {career.endDate}
+                </span>
               </span>
               <div className="timeline__content">
                 <div className="timeline__title">{career.company}</div>
                 <span className="timeline__description">
-                  {career.description}
+                  {career.department}
                 </span>
                 <span className="timeline__description">{career.position}</span>
                 {career.skills && (
@@ -75,15 +87,17 @@ const CareersSection = () => {
         </div>
         <ul className="timeline__list">
           {projects.map((project) => (
-            <li className="timeline__item" key={project.title}>
+            <li className="timeline__item" key={project.id}>
               <span className="timeline__header">
                 <StarBurst />
-                <span className="timeline__date">{project.date}</span>
+                <span className="timeline__date">
+                  {project.startDate} - {project.endDate}
+                </span>
               </span>
               <div className="timeline__content">
-                <div className="timeline__title">{project.title}</div>
+                <div className="timeline__title">{project.company}</div>
                 <span className="timeline__description">
-                  {project.description}
+                  {project.department}
                 </span>
                 <span className="timeline__description">
                   {project.position}
