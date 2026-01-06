@@ -19,5 +19,5 @@ export interface Business extends Career {
   details: string[];
 }
 
-export interface Project extends Career {
-}
+// Project는 Career과 동일하므로 타입 별칭 사용
+export type Project = Career;
