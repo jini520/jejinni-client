@@ -19,14 +19,14 @@ export const mockCertifications: Certifications = {
       tier: "1위",
     },
     {
-      id: "2",
+      id: "3",
       name: "SSAFY 특화 프로젝트 우수상",
       date: "2021.02.",
       organization: "삼성전자",
       tier: "1위",
     },
     {
-      id: "2",
+      id: "4",
       name: "SSAFY 공통 프로젝트 우수상",
       date: "2021.02.",
       organization: "삼성전자",
