@@ -22,30 +22,28 @@ const CertificationsSection = () => {
       <div className="certifications__list">
         {certifications.map((certification) => (
           <div className="certification__item" key={certification.id}>
-            <div className="certification__header">
-              <LiquidGlass className="certification__icon">
-                <CertificationIcon width={24} height={24} />
-              </LiquidGlass>
+            <LiquidGlass className="certification__icon">
+              <CertificationIcon width="1.5rem" height="1.5rem" />
+            </LiquidGlass>
+            <div className="certification__content-wrapper">
               <span className="certification__date">{certification.date}</span>
-            </div>
-            <div className="certification__content">
-              <div>{certification.name}</div>
-              <div className="certification__description">
-                <span>{certification.organization}, </span>
-                <span>{certification.tier}</span>
+              <div className="certification__content">
+                <div>{certification.name}</div>
+                <div className="certification__description">
+                  <span>{certification.organization}, </span>
+                  <span>{certification.tier}</span>
+                </div>
               </div>
             </div>
           </div>
         ))}
         {awards.map((award) => (
           <div className="certification__item" key={award.id}>
-            <div className="certification__header">
-              <LiquidGlass className="certification__icon">
-                <AwardIcon width={24} height={24} />
-              </LiquidGlass>
+            <LiquidGlass className="certification__icon">
+              <AwardIcon width="1.5rem" height="1.5rem" />
+            </LiquidGlass>
+            <div className="certification__content-wrapper">
               <span className="certification__date">{award.date}</span>
-            </div>
-            <div className="">
               <div className="certification__content">
                 <div>{award.name}</div>
                 <div className="certification__description">
