@@ -20,7 +20,8 @@
       }
 
       &__list {
-        @apply mt-8;
+        @apply flex flex-col gap-8 mt-8;
+        @apply sm:gap-4;
       }
 
       &__item {
