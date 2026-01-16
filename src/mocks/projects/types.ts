@@ -14,13 +14,5 @@ export interface ProjectDetail {
   skills: IconNames[];
   participants: number;
   period: string;
-  contents: ProjectDetailContent[];
-}
-
-export interface ProjectDetailContent {
-  id: string;
-  parentId: string | null;
-  order: number;
-  content: string;
-  children?: ProjectDetailContent[];
+  contents: string;
 }

@@ -6,8 +6,8 @@ import useColor from "@/hooks/useColor";
 import { useProject } from "@/hooks/useProjects";
 import classNames from "classnames";
 import SkillIcon from "@/app/_components/SkillIcon/SkillIcon";
+import MarkdownContent from "@/app/_components/MarkdownContent/MarkdownContent";
 import "./project-detail.scss";
-import { buildContentTree } from "@/utils/buildTree";
 
 interface Props {
   id: string;
@@ -108,21 +108,7 @@ const ProjectDetail = ({ id }: Props) => {
       <div className="project__detail-divider"></div>
       <div className="project__detail-content">
         <h2 className="project__detail-content-title">상세 내용</h2>
-        <ol className="project__detail-content-list level-0">
-          {buildContentTree(data.contents).map((content) => (
-            <li className="project__detail-content-text" key={content.id}>
-              {content.content}
-              <ul className="project__detail-content-list level-1">
-                {content.children &&
-                  content.children.map((child) => (
-                    <li className="project__detail-content-text" key={child.id}>
-                      {child.content}
-                    </li>
-                  ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+        <MarkdownContent markdown={data.contents} />
       </div>
     </div>
   );

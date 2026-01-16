@@ -11,6 +11,9 @@
   "dependencies": {
     "@tanstack/react-query": "^5.90.2",
     "classnames": "^2.5.1",
+    "highlight.js": "^11.11.1",
+    "marked": "^17.0.1",
+    "marked-highlight": "^2.2.3",
     "next": "15.5.9",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -20,6 +23,7 @@
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@tanstack/react-query-devtools": "^5.90.2",
+    "@types/marked": "^6.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
