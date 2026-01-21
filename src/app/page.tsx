@@ -5,6 +5,7 @@ import CareersSection from "./_components/Section/CareersSection/CareersSection"
 import EducationsSection from "./_components/Section/EducationsSection/EducationsSection";
 import ProjectsSection from "./_components/Section/ProjectsSection/ProjectsSection";
 import CertificationsSection from "./_components/Section/CertificationsSection/CertificationsSection";
+import BlogPostSection from "./_components/Section/BlogPostSection/BlogPostSection";
 import "./page.scss";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <ProjectsSection />
       <EducationsSection />
       <CertificationsSection />
+      <BlogPostSection />
     </div>
   );
 }

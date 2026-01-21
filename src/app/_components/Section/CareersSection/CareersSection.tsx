@@ -4,12 +4,10 @@ import React from "react";
 import Section from "../Section";
 import StarBurst from "public/icons/star-burst.svg";
 import Accordion from "./Accordion/Accordion";
-// import careers from "@/constants/careers.json";
-// import projects from "@/constants/projects.json";
-import "./careers-section.scss";
 import SkillIcon from "../../SkillIcon/SkillIcon";
 import { IconNames } from "@/constants/iconRegistry";
 import { useCareers } from "@/hooks/useCareers";
+import "./careers-section.scss";
 
 const CareersSection = () => {
   const { data, isLoading } = useCareers();
