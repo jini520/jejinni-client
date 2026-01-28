@@ -5,7 +5,15 @@ export const mockProjects: Project[] = [
     id: "306a3e3c-5b05-4f28-bb65-b5f12937c210",
     title: "포트폴리오 웹사이트",
     description: "Next.js와 TypeScript로 만든 개인 포트폴리오 사이트입니다.",
-    skills: ["react", "nextjs", "typescript"],
+    skills: [
+      "react",
+      "nextjs",
+      "typescript",
+      "springboot",
+      "postgresql",
+      "oracle",
+      "nginx",
+    ],
   },
   {
     id: "7aa9e0e4-9af5-4f02-8dde-6854cbde994c",
