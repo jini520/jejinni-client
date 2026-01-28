@@ -8,14 +8,14 @@
   }
 
   .project__modal-background {
-    @apply fixed top-0 left-0 w-full h-full bg-white;
+    @apply fixed top-0 left-0 w-full h-full;
 
-    opacity: 0.02;
+    background: var(--opacity-20);
   }
 
   .project__modal {
-    @apply fixed top-0 left-0 w-full h-full rounded-none pt-8 pb-24 pl-8 pr-8;
-    @apply md:w-[640px] md:h-auto md:max-h-[80vh] md:left-[50%] md:translate-x-[-50%] md:top-[30%] md:translate-y-[-30%] md:rounded-[2rem];
+    @apply fixed top-0 left-0 w-full h-full rounded-none p-[5vw];
+    @apply md:w-[50vw] md:h-auto md:max-h-[80vh] md:left-[50%] md:translate-x-[-50%] md:top-[30%] md:translate-y-[-30%] md:rounded-[2rem];
 
     overflow-y: auto;      // 모달 내부만 스크롤 가능
     overscroll-behavior: contain;  
