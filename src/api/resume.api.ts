@@ -1,6 +1,6 @@
 export async function downloadResume(): Promise<Blob> {
   try {
-    const response = await fetch("/api/resume/download");
+    const response = await fetch("/resume/download");
 
     if (!response.ok) {
       throw new Error("Failed to download resume");
