@@ -3,6 +3,7 @@ import { skillHandlers } from "./skills";
 import { careerHandlers } from "./careers";
 import { certificationHandlers } from "./certifiactions";
 import { eduHandlers } from "./edu";
+import { resumeHandlers } from "./resume";
 
 export const handlers = [
   ...projectHandlers,
@@ -10,4 +11,5 @@ export const handlers = [
   ...careerHandlers,
   ...eduHandlers,
   ...certificationHandlers,
+  ...resumeHandlers,
 ];

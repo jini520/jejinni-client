@@ -1,6 +1,7 @@
 import React from "react";
 import Section from "../Section";
 import "./hero-section.scss";
+import ResumeDownloadButton from "../../DownloadButton/Resume/ResumeDownloadButton";
 
 const HeroSection = () => {
   return (
@@ -16,6 +17,9 @@ const HeroSection = () => {
       <p className="section__description">
         <br />
       </p>
+      <div className="section__download-area">
+        <ResumeDownloadButton />
+      </div>
     </Section>
   );
 };
