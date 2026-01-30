@@ -1,6 +1,6 @@
 import { VelogPost } from "@/types/velog.types";
 import { DOMParser } from "@xmldom/xmldom";
-import { parseRSSDate } from "./parseDate";
+import { parseRSSDate } from "@/lib/parseDate";
 
 export const fetchVelogPost = async (): Promise<VelogPost[]> => {
   try {

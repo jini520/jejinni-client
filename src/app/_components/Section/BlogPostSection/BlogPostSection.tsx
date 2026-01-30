@@ -1,7 +1,7 @@
 import React from "react";
 import Section from "../Section";
 import BlogCards from "./BlogCards/BlogCards";
-import { fetchVelogPost } from "@/lib/velog";
+import { fetchVelogPost } from "@/services/velog.service";
 
 const BlogPostSection = async () => {
   const posts = await fetchVelogPost();
