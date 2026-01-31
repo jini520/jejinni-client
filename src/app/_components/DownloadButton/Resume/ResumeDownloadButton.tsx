@@ -2,25 +2,13 @@
 
 import React from "react";
 import DownloadButton from "../DownloadButton";
-import { downloadResume } from "@/api/resume.api";
 
 const ResumeDownloadButton = () => {
-  const handleDownload = async () => {
-    try {
-      const blob = await downloadResume();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "resume.pdf";
-      a.click();
-      window.URL.revokeObjectURL(url);
-      a.remove();
-
-      console.log(blob);
-    } catch (error) {
-      console.error("Error downloading resume:", error);
-    }
+  const handleDownload = () => {
+    // nginx가 /api/*를 백엔드로 프록시하므로 직접 호출
+    window.open("/api/resumes/latest", "_blank");
   };
+
   return (
     <DownloadButton onClick={handleDownload}>이력서 다운로드</DownloadButton>
   );
