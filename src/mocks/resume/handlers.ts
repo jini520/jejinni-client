@@ -1,9 +1,9 @@
 import { http, HttpResponse } from "msw";
 
 export const resumeHandlers = [
-  http.get("/api/resume/download", async () => {
+  http.get("/api/resumes/latest", async () => {
     try {
-      const response = await fetch("/test.pdf");
+      const response = await fetch("/제진명_이력서.pdf");
 
       if (!response.ok) {
         throw new Error("Failed to fetch resume");
@@ -12,7 +12,7 @@ export const resumeHandlers = [
       const blob = await response.blob();
       const arrayBuffer = await blob.arrayBuffer();
 
-      const filename = "test.pdf";
+      const filename = "제진명_이력서.pdf";
       const encodedFilename = encodeURIComponent(filename);
 
       return HttpResponse.arrayBuffer(arrayBuffer, {
