@@ -1,24 +1,24 @@
 @reference "tailwindcss";
 
 @layer components {
-  .section__skills {
+  .skills__section--filter {
     .filter__container {
       @apply relative flex items-center justify-center mt-6;
     }
-
+  
     .filter__wrapper {
       @apply relative rounded-full;
     }
     
     .filter {
       @apply relative flex p-2 rounded-full items-center justify-center;
-
+  
       color: var(--color-text-primary);
       
       &__items {
         @apply flex whitespace-nowrap;
         @apply sm:gap-2;
-
+  
         flex-wrap: nowrap;
       }
       

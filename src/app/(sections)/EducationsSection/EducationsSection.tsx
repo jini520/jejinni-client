@@ -1,16 +1,11 @@
-"use client";
-
 import React from "react";
-import Section from "../Section";
-import educations from "@/constants/educations.json";
+import Section from "../../_components/Section/Section";
 import Astar from "public/icons/astar.svg";
+import { getEdu } from "@/api/edu.api";
 import "./educations-section.scss";
-import { useEdu } from "@/hooks/useEdu";
 
-const EducationsSection = () => {
-  const { data, isLoading } = useEdu();
-
-  if (isLoading) return <div>Loading...</div>;
+const EducationsSection = async () => {
+  const data = await getEdu();
 
   return (
     <Section id="education" className="section section__educations">

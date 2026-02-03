@@ -1,7 +1,7 @@
 import React from "react";
-import Section from "../Section";
+import Section from "../../_components/Section/Section";
 import "./hero-section.scss";
-import ResumeDownloadButton from "../../DownloadButton/Resume/ResumeDownloadButton";
+import ResumeDownloadButton from "../../_components/DownloadButton/Resume/ResumeDownloadButton";
 
 const HeroSection = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectDetail from "@/app/_components/Section/ProjectsSection/ProjectDetail/ProjectDetail";
+import ProjectDetail from "@/app/(sections)/ProjectsSection/ProjectDetail/ProjectDetail";
 import BackButton from "@/app/_components/BackButton/BackButton";
 import "./page.scss";
 

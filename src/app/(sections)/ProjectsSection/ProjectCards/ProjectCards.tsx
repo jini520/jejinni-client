@@ -1,26 +1,13 @@
-"use client";
-
-import { useProjects } from "@/hooks/useProjects";
+import { getProjects } from "@/api/projects.api";
 import React from "react";
 import ProjectCard from "../ProjectCard/ProjectCard";
-import ProjectCardSkeleton from "../ProjectCard/ProjectCardSkeleton";
 import Link from "next/link";
 
-const ProjectCards = () => {
-  const { data, isLoading, error } = useProjects();
+const ProjectCards = async () => {
+  const data = await getProjects();
   const projects = data?.items || [];
 
-  if (isLoading)
-    return (
-      <div className="project__cards">
-        <ProjectCardSkeleton />
-        <ProjectCardSkeleton />
-        <ProjectCardSkeleton />
-      </div>
-    );
-
   if (projects.length === 0) return <div>No projects found</div>;
-  // if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="project__cards">

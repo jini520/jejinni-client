@@ -1,11 +1,11 @@
 import Nav from "./_components/Nav/Nav";
-import HeroSection from "./_components/Section/HeroSection/HeroSection";
-import SkillsSection from "./_components/Section/SkillsSection/SkillsSection";
-import CareersSection from "./_components/Section/CareersSection/CareersSection";
-import EducationsSection from "./_components/Section/EducationsSection/EducationsSection";
-import ProjectsSection from "./_components/Section/ProjectsSection/ProjectsSection";
-import CertificationsSection from "./_components/Section/CertificationsSection/CertificationsSection";
-import BlogPostSection from "./_components/Section/BlogPostSection/BlogPostSection";
+import HeroSection from "./(sections)/HeroSection/HeroSection";
+import SkillsSection from "./(sections)/SkillsSection/SkillsSection";
+import CareersSection from "./(sections)/CareersSection/CareersSection";
+import EducationsSection from "./(sections)/EducationsSection/EducationsSection";
+import ProjectsSection from "./(sections)/ProjectsSection/ProjectsSection";
+import CertificationsSection from "./(sections)/CertificationsSection/CertificationsSection";
+import BlogPostSection from "./(sections)/BlogPostSection/BlogPostSection";
 import "./page.scss";
 
 export default function Home() {
