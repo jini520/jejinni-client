@@ -16,8 +16,6 @@ export async function apiRequest<T>(
 ): Promise<ApiResponse<T>> {
   const url = `${getBaseUrl()}${endpoint}`;
 
-  console.log(">>> API URL:", url);
-
   const config: RequestInit = {
     headers: {
       "Content-Type": "application/json",
@@ -32,8 +30,6 @@ export async function apiRequest<T>(
   try {
     const response = await fetch(url, config);
     const data = await response.json();
-
-    console.log(">>> API Response:", response);
 
     if (!response.ok) {
       throw new Error(data.message || "API 요청에 실패했습니다.");
