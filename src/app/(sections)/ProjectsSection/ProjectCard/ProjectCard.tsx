@@ -1,11 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import LiquidGlass from "@/app/_components/LiquidGlass/LiquidGlass";
 import Shape from "@/app/_components/Shape/Shape";
 import SkillIcon from "@/app/_components/SkillIcon/SkillIcon";
 import classNames from "classnames";
 import { IconNames } from "@/constants/iconRegistry";
 import useColor from "@/hooks/useColor";
+import { useResizeObserver } from "@/hooks/useResizeObserver";
+import ThreeDotsIcon from "public/icons/threedots.svg";
 import "./project-card.scss";
+import Tag from "@/app/_components/Tag/Tag";
 
 interface ProjectCardProps {
   id: string;
@@ -16,6 +21,16 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ id, title, discription, skills }: ProjectCardProps) => {
   const { getColor } = useColor();
+  const { ref, width, height } = useResizeObserver<HTMLDivElement>();
+
+  const [visibleCount, setVisibleCount] = useState(skills.length);
+  const [hiddenCount, setHiddenCount] = useState(0);
+
+  useEffect(() => {
+    const count = Math.floor(width / 30);
+    setVisibleCount(count - 2);
+    setHiddenCount(Math.max(0, skills.length - count + 2));
+  }, [width]);
 
   return (
     <LiquidGlass
@@ -27,15 +42,21 @@ const ProjectCard = ({ id, title, discription, skills }: ProjectCardProps) => {
           <h4 className="project__card-title">{title}</h4>
           <p className="project__card-description">{discription}</p>
         </div>
-        <div className="project__card-skills">
-          {skills.map((skill) => (
-            <SkillIcon
-              className="project__card-skill"
-              key={skill}
-              skill={skill as IconNames}
-              size="sm"
-            />
-          ))}
+        <div className="project__card-skills" ref={ref}>
+          {skills.map((skill, index) => {
+            if (index >= visibleCount) return;
+            return (
+              <SkillIcon
+                className="project__card-skill"
+                key={skill}
+                skill={skill as IconNames}
+                size="sm"
+              />
+            );
+          })}
+          {hiddenCount > 0 && (
+            <Tag label={`+${hiddenCount}`} color={getColor(id)} />
+          )}
         </div>
       </div>
     </LiquidGlass>
