@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../Section";
+import Section from "../../_components/Section/Section";
 import ProjectCards from "./ProjectCards/ProjectCards";
 import "./projects-section.scss";
 

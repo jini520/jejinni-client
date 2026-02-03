@@ -4,8 +4,8 @@ import React, { useCallback, useMemo, useState } from "react";
 import { VelogPost } from "@/types/velog.types";
 import LiquidGlass from "@/app/_components/LiquidGlass/LiquidGlass";
 import BlogCard from "../BlogCard/BlogCard";
-import "./blog-cards.scss";
 import Link from "next/link";
+import "./blog-cards.scss";
 
 interface BlogCardsProps {
   posts: VelogPost[];
@@ -35,6 +35,7 @@ const BlogCards = ({ posts }: BlogCardsProps) => {
   if (posts.length === 0) {
     return <div>게시물이 없습니다.</div>;
   }
+
   return (
     <div className="blog__cards-container">
       <div className="blog__cards">

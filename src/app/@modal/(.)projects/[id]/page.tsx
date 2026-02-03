@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectDetail from "@/app/_components/Section/ProjectsSection/ProjectDetail/ProjectDetail";
+import ProjectDetail from "@/app/(sections)/ProjectsSection/ProjectDetail/ProjectDetail";
 import ScrollLock from "@/app/_components/ScrollLock/ScrollLock";
 import CloseModalButton from "@/app/_components/CloseModalButton/CloseModalButton";
 import "./page.scss";

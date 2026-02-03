@@ -1,18 +1,14 @@
-"use client";
-
 import React from "react";
-import Section from "../Section";
+import Section from "../../_components/Section/Section";
 import StarBurst from "public/icons/star-burst.svg";
 import Accordion from "./Accordion/Accordion";
-import SkillIcon from "../../SkillIcon/SkillIcon";
+import SkillIcon from "../../_components/SkillIcon/SkillIcon";
 import { IconNames } from "@/constants/iconRegistry";
-import { useCareers } from "@/hooks/useCareers";
+import { getCareers } from "@/api/careers.api";
 import "./careers-section.scss";
 
-const CareersSection = () => {
-  const { data, isLoading } = useCareers();
-
-  if (isLoading) return <div>Loading...</div>;
+const CareersSection = async () => {
+  const data = await getCareers();
 
   const businesses = data?.businesses || [];
   const projects = data?.projects || [];
