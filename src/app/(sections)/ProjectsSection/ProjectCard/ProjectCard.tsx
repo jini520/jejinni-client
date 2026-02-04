@@ -11,6 +11,7 @@ import { useResizeObserver } from "@/hooks/useResizeObserver";
 import ThreeDotsIcon from "public/icons/threedots.svg";
 import "./project-card.scss";
 import Tag from "@/app/_components/Tag/Tag";
+import { useMediaQueryContext } from "@/context/mediaQueryContext";
 
 interface ProjectCardProps {
   id: string;
@@ -21,16 +22,17 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ id, title, discription, skills }: ProjectCardProps) => {
   const { getColor } = useColor();
-  const { ref, width, height } = useResizeObserver<HTMLDivElement>();
+  const { ref, width } = useResizeObserver<HTMLDivElement>();
+  const { isMobile, isTablet, isDesktop } = useMediaQueryContext();
 
   const [visibleCount, setVisibleCount] = useState(skills.length);
   const [hiddenCount, setHiddenCount] = useState(0);
 
   useEffect(() => {
-    const count = Math.floor(width / 30);
-    setVisibleCount(count - 2);
-    setHiddenCount(Math.max(0, skills.length - count + 2));
-  }, [width]);
+    const count = Math.floor(width / (isMobile ? 31 : isTablet ? 33 : 35));
+    setVisibleCount(count - 1);
+    setHiddenCount(Math.max(0, skills.length - count + 1));
+  }, [width, isMobile, skills.length]);
 
   return (
     <LiquidGlass
