@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'breakpoints' as breakpoints;
+
 @mixin spread-map($map: ()) {
   @each $key, $value in $map {
     #{$key}: $value;
@@ -12,5 +15,11 @@
     @return var($key, $fallback);
   } @else {
     @return var($key);
+  }
+}
+
+@mixin min-width($key) {
+  @if map.has-key(breakpoints.$breakpoints, --breakpoint-#{$key}) {
+    @media (min-width: map.get(breakpoints.$breakpoints, --breakpoint-#{$key})) { @content; }
   }
 }

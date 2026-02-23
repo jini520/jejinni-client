@@ -35,13 +35,15 @@ const MediaQueryProvider = ({ children }: MediaQueryProviderProps) => {
   };
 
   const isMobile = dismension.width < 640;
-  const isTablet = dismension.width >= 640 && dismension.width < 768;
-  const isDesktop = dismension.width >= 768;
+  const isTablet = dismension.width >= 640 && dismension.width < 1024;
+  const isDesktop = dismension.width >= 1024 && dismension.width < 1280;
+  const isWideDesktop = dismension.width >= 1280;
 
   const value: MediaQueryContextValue = {
     isMobile,
     isTablet,
     isDesktop,
+    isWideDesktop,
     width: dismension.width,
     height: dismension.height,
     matches,
