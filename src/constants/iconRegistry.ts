@@ -22,6 +22,10 @@ import NotionIcon from "public/logos/notion.svg";
 import LinuxIcon from "public/logos/linux.svg";
 import ElectronIcon from "public/logos/electron.svg";
 import SolidityIcon from "public/logos/solidity.svg";
+import SpringBootIcon from "public/logos/springboot.svg";
+import PostgreSQLIcon from "public/logos/postgresql.svg";
+import OracleIcon from "public/logos/oracle.svg";
+import NginxIcon from "public/logos/nginx.svg";
 
 export const iconRegistry = {
   javascript: JavaScriptIcon,
@@ -37,8 +41,8 @@ export const iconRegistry = {
   redux: ReduxIcon,
   storybook: StorybookIcon,
   sass: SassIcon,
-  'styled-components': StyledComponentsIcon,
-  'tanstack-query': TanStackQueryIcon,
+  "styled-components": StyledComponentsIcon,
+  "tanstack-query": TanStackQueryIcon,
   vite: ViteIcon,
   docker: DockerIcon,
   figma: FigmaIcon,
@@ -49,6 +53,10 @@ export const iconRegistry = {
   linux: LinuxIcon,
   electron: ElectronIcon,
   solidity: SolidityIcon,
+  springboot: SpringBootIcon,
+  postgresql: PostgreSQLIcon,
+  oracle: OracleIcon,
+  nginx: NginxIcon,
 } as const;
 
 export type IconNames = keyof typeof iconRegistry;

@@ -40,7 +40,7 @@ const navItems = [
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [activeItem, setActiveItem] = useState<string>(navItems[0].id);
 
   const router = useRouter();
 
@@ -54,19 +54,57 @@ const Nav = () => {
         });
       },
       {
-        rootMargin: "-50px 0px -50px 0px",
-        threshold: 0.6,
+        rootMargin: "-30% 0px -60% 0px",
+        threshold: 0,
       }
     );
 
-    navItems.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
-      }
+    // 이미 observe 중인 요소들을 추적
+    const observedElements = new Set<string>();
+
+    const observeElements = () => {
+      navItems.forEach((item) => {
+        // 이미 observe 중이면 스킵
+        if (observedElements.has(item.id)) {
+          return;
+        }
+
+        const element = document.getElementById(item.id);
+        if (element) {
+          observer.observe(element);
+          observedElements.add(item.id);
+        }
+      });
+    };
+
+    // 초기 시도
+    observeElements();
+
+    // 요소가 아직 로드되지 않은 경우를 대비해 MutationObserver 사용
+    const mutationObserver = new MutationObserver(() => {
+      observeElements();
     });
 
-    return () => observer.disconnect();
+    // DOM 변경 감지 시작
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // 짧은 지연 후 재시도 (비동기 컴포넌트 로딩 대응)
+    const timeoutIds: NodeJS.Timeout[] = [];
+    [100, 500, 1000].forEach((delay) => {
+      const timeoutId = setTimeout(() => {
+        observeElements();
+      }, delay);
+      timeoutIds.push(timeoutId);
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+      timeoutIds.forEach((id) => clearTimeout(id));
+    };
   }, []);
 
   const handleClickHamburger = () => {
@@ -86,7 +124,11 @@ const Nav = () => {
     >
       <LiquidGlass className="nav-wrapper">
         <div className="nav-inner">
-          <Link href="" className="logo">
+          <Link
+            href=""
+            className="logo"
+            onClick={() => setActiveItem(navItems[0].id)}
+          >
             <Jieut color="var(--color-primary-orange)" />
             <span></span>
             <Jieut color="var(--color-primary-green)" />

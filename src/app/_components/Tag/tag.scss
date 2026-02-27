@@ -1,0 +1,11 @@
+@reference "tailwindcss";
+
+@layer components {
+  .tag {
+    @apply flex items-center gap-2;
+  }
+
+  .tag__label {
+    @apply text-sm font-medium;
+  }
+}
