@@ -4,7 +4,7 @@ import { parseRSSDate } from "@/lib/parseDate";
 
 export const fetchVelogPost = async (): Promise<VelogPost[]> => {
   try {
-    const rssUrl = process.env.NEXT_BLOG_RSS_URL;
+    const rssUrl = process.env.NEXT_PUBLIC_BLOG_RSS_URL;
     const username = process.env.NEXT_PUBLIC_BLOG_USERNAME;
 
     if (!rssUrl || !username) {
@@ -30,7 +30,7 @@ export const fetchVelogPost = async (): Promise<VelogPost[]> => {
       title: item.getElementsByTagName("title")[0].textContent || "",
       link: item.getElementsByTagName("link")[0].textContent || "",
       pubDate: parseRSSDate(
-        item.getElementsByTagName("pubDate")[0].textContent || ""
+        item.getElementsByTagName("pubDate")[0].textContent || "",
       ),
     }));
 
