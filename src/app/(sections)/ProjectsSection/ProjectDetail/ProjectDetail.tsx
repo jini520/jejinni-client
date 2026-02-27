@@ -1,6 +1,6 @@
 import React from "react";
 import Shape from "@/app/_components/Shape/Shape";
-import useColor from "@/hooks/useColor";
+import { getColor } from "@/hooks/useColor";
 import classNames from "classnames";
 import SkillIcon from "@/app/_components/SkillIcon/SkillIcon";
 import MarkdownContent from "@/app/_components/MarkdownContent/MarkdownContent";
@@ -13,7 +13,6 @@ interface Props {
 
 const ProjectDetail = async ({ id }: Props) => {
   const data = await getProject(id);
-  const { getColor } = useColor();
 
   if (!data) return <div>Project not found</div>;
 
