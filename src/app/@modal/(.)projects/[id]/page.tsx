@@ -15,8 +15,8 @@ const ProjectModal = async ({ params }: Props) => {
     <div className="project__modal-container">
       <ScrollLock />
       <div className="project__modal-background"></div>
-      <CloseModalButton className="project__modal-close" />
       <div className="project__modal">
+        <CloseModalButton className="project__modal-close" />
         <div className="project__modal-content">
           <ProjectDetail id={id} />
         </div>
