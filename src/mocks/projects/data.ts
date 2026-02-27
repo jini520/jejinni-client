@@ -19,7 +19,7 @@ export const mockProjects: Project[] = [
   {
     id: "7aa9e0e4-9af5-4f02-8dde-6854cbde994c",
     title: "할 일 관리 앱",
-    description: "React와 Zustand를 활용한 투두리스트 애플리케이션입니다.",
+    description: "React와 Zustand를",
     skills: ["react", "zustand", "typescript"],
   },
   {

@@ -42,7 +42,7 @@
   }
 
   .project__card-description {
-    @apply text-sm mt-2;
+    @apply text-sm mt-2 min-h-10;
 
     color: var(--color-gray);
     text-overflow: ellipsis;
