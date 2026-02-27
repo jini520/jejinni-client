@@ -2,7 +2,7 @@
 
 @layer components {
   .project__modal-container {
-    @apply fixed top-0 left-0 w-full h-full z-9999;
+    @apply fixed top-0 left-0 w-full h-full z-9999 flex items-center justify-center;
 
     backdrop-filter: blur(2px);
   }
@@ -14,8 +14,8 @@
   }
 
   .project__modal {
-    @apply fixed top-0 left-0 w-full h-full rounded-none p-[36px];
-    @apply md:p-[48px] md:w-[80vw] md:max-w-[1024px] md:h-auto md:max-h-[80vh] md:left-[50%] md:translate-x-[-50%] md:top-[30%] md:translate-y-[-30%] md:rounded-[0.5rem];
+    @apply relative flex flex-col z-10000 rounded-none p-[36px];
+    @apply md:p-[48px] md:w-[80vw] md:max-w-[1024px] md:h-auto md:max-h-[80vh] md:rounded-[0.5rem];
 
     overflow-y: auto;      // 모달 내부만 스크롤 가능
     overscroll-behavior: contain;  
@@ -37,9 +37,7 @@
     }
   }
   .project__modal-close {
-    @apply fixed top-6 right-6 z-9999 cursor-pointer p-2 rounded-xl;
-    @apply md:top-[10vh] md:right-[calc(10vw+48px)];
-    @apply xl:right-[calc(50%-512px+48px)];
+    @apply sticky top-0 flex flex-shrink-0 self-end cursor-pointer p-2 rounded-xl;
 
     &:hover {
       box-shadow: 0 0 8px -2px var(--opacity-40);
