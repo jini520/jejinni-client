@@ -42,20 +42,19 @@
   }
 
   .project__card-description {
-    @apply text-sm mt-2 min-h-14;
+    @apply text-sm mt-2;
 
     color: var(--color-gray);
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
     word-break: break-word;
-    display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
   }
 
   .project__card-skills {
-    @apply flex gap-2 overflow-hidden flex-nowrap;
+    @apply flex gap-2 overflow-hidden flex-nowrap mt-4;
   }
 
   .project__card-skill {

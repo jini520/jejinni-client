@@ -4,7 +4,8 @@ export const mockProjects: Project[] = [
   {
     id: "306a3e3c-5b05-4f28-bb65-b5f12937c210",
     title: "포트폴리오 웹사이트",
-    description: "Next.js와 TypeScript로 만든 개인 포트폴리오 사이트입니다.",
+    description:
+      "Next.js와 TypeScript로 만든 개인 포트폴리오 사이트입니다.Next.js와 TypeScript로 만든 개인 포트폴리오 사이트입니다.Next.js와 TypeScript로 만든 개인 포트폴리오 사이트입니다.Next.js와 TypeScript로 만든 개인 포트폴리오 사이트입니다.",
     skills: [
       "react",
       "nextjs",
