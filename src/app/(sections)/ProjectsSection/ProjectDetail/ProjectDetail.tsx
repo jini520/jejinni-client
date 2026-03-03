@@ -22,7 +22,7 @@ const ProjectDetail = async ({ id }: Props) => {
         <Shape
           className={classNames(
             "project__detail-shape",
-            `shape--${getColor(data.id)}`
+            `shape--${getColor(data.id)}`,
           )}
           id={data.id}
           size="lg"
@@ -40,15 +40,16 @@ const ProjectDetail = async ({ id }: Props) => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-5 gap-4">
           <div>
             <div className="project__detail-caption">참여 인원</div>
             <p>{data.participants}</p>
           </div>
-          <div>
+          <div className="col-span-2">
             <div className="project__detail-caption">기간</div>
             <p>{data.period}</p>
           </div>
+          <div className="col-span-2"></div>
         </div>
       </div>
       <div className="project__detail-divider"></div>
