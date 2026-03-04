@@ -1,4 +1,4 @@
-import { Edu } from "./types";
+import { Edu } from "@/api/edu.types";
 
 export const mockEdu: Edu[] = [
   {

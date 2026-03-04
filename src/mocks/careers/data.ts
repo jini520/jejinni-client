@@ -1,4 +1,4 @@
-import type { Business, Careers, Project } from "./types";
+import type { Careers } from "@/api/careers.types";
 
 export const mockCareers: Careers = {
   businesses: [
