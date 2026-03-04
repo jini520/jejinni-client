@@ -23,7 +23,8 @@
       }
       
       &__item {
-        @apply text-sm font-medium py-2.5 px-2.5 rounded-full cursor-pointer z-10;
+        @apply text-base py-2.5 px-3.5 font-medium  rounded-full cursor-pointer z-10;
+        @apply md:text-sm md:py-2.5 md:px-2.5;
         
         &.selected {
           @apply font-bold;
