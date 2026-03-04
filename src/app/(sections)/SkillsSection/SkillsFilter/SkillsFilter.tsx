@@ -5,7 +5,7 @@ import classNames from "classnames";
 import LiquidGlass from "@/app/_components/LiquidGlass/LiquidGlass";
 import SkillIcon from "@/app/_components/SkillIcon/SkillIcon";
 import { IconNames } from "@/constants/iconRegistry";
-import { Category, Skill } from "@/mocks/skills";
+import { Category, Skill } from "@/api/skills.types";
 import "./skills-filter.scss";
 
 interface SkillsFilterProps {
@@ -27,7 +27,7 @@ const SkillsFilter = ({
       }
       setSelected(categoryId || null);
     },
-    [selected]
+    [selected],
   );
   return (
     <div className="skills__section--filter">

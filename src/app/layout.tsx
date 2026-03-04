@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import MSWProvider from "./_components/MSWProvider";
-import QueryProvider from "./_providers/QueryProvider";
+import { MSWProvider } from "./_components/MSWProvider";
+import MediaQueryProvider from "./_providers/MediaQueryProvider";
 import "../styles/main.scss";
 import "./layout.scss";
-import MediaQueryProvider from "./_providers/MediaQueryProvider";
+
+if (
+  process.env.NEXT_RUNTIME === "nodejs" &&
+  process.env.NODE_ENV !== "production" &&
+  process.env.NEXT_PUBLIC_USE_MSW === "true"
+) {
+  const { server } = await import("@/mocks/server");
+  server.listen();
+}
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.ttf",
@@ -28,14 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${pretendard.variable} antialiased flex`}>
-        <QueryProvider>
+        <MSWProvider>
           <MediaQueryProvider>
-            <MSWProvider>
-              <div className="layout">{children}</div>
-              {modal}
-            </MSWProvider>
+            <div className="layout">{children}</div>
+            {modal}
           </MediaQueryProvider>
-        </QueryProvider>
+        </MSWProvider>
       </body>
     </html>
   );

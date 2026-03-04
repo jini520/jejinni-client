@@ -1,10 +1,10 @@
 import React from "react";
-import Section from "../../_components/Section/Section";
 import StarBurst from "public/icons/star-burst.svg";
-import Accordion from "./Accordion/Accordion";
-import SkillIcon from "../../_components/SkillIcon/SkillIcon";
-import { IconNames } from "@/constants/iconRegistry";
 import { getCareers } from "@/api/careers.api";
+import Section from "@/app/_components/Section/Section";
+import SkillIcon from "@/app/_components/SkillIcon/SkillIcon";
+import { IconNames } from "@/constants/iconRegistry";
+import Accordion from "./Accordion/Accordion";
 import "./careers-section.scss";
 
 const CareersSection = async () => {

@@ -1,11 +1,13 @@
 import { apiRequest } from "@/lib/api";
-import { Skills } from "@/mocks/skills";
+import { Skills } from "@/api/skills.types";
 
 export async function getSkills(): Promise<Skills> {
-  const response = await apiRequest<Skills>('/api/skills');
+  const response = await apiRequest<Skills>("/api/skills");
 
-  return response.data || {
-    categories: [],
-    skills: [],
-  };
+  return (
+    response.data || {
+      categories: [],
+      skills: [],
+    }
+  );
 }
